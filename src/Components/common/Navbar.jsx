@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
+import { AuthContext } from "../../main";
+import { RxAvatar } from "react-icons/rx";
 
 
 const Navbar = () => {
-  // const { signOutUser, user } = useContext(AuthContext);
-  // const navigate = useNavigate();
+  const { signOutUser, user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  // const handleSignOut = () => {
-  //   signOutUser().then(() => {
-  //     navigate('/');
-  //   });
-  // };
+  const handleSignOut = () => {
+    signOutUser().then(() => {
+      navigate('/');
+    });
+  };
 
   return (
     <div className="w-full bg-white shadow-sm">
@@ -23,7 +25,7 @@ const Navbar = () => {
 
         {/* Nav Links */}
         <div className="flex flex-wrap justify-center gap-5 items-center">
-          {/* <NavLink
+          <NavLink
             to="/"
             className={({ isActive }) =>
               `text-base font-medium hover:underline hover:text-blue-600 transition duration-200 ${
@@ -32,8 +34,8 @@ const Navbar = () => {
             }
           >
             Home
-          </NavLink> */}
-          {/* {
+          </NavLink>
+          {
             !user &&           <NavLink
             to="/login"
             className={({ isActive }) =>
@@ -44,8 +46,8 @@ const Navbar = () => {
           >
             Login
           </NavLink>
-          } */}
-          {/* <NavLink
+          }
+          <NavLink
             to="/register"
             className={({ isActive }) =>
               `text-base font-medium hover:underline hover:text-blue-600 transition duration-200 ${
@@ -54,8 +56,8 @@ const Navbar = () => {
             }
           >
             Register
-          </NavLink> */}
-          {/* {user && (
+          </NavLink>
+          {user && (
             <>
               <NavLink
                 to="/profileUpdate"
@@ -70,7 +72,7 @@ const Navbar = () => {
                 FAQ
               </NavLink>
             </>
-          )} */}
+          )}
         </div>
 
         {/* Right - Sign Out & Avatar */}
@@ -111,7 +113,7 @@ const Navbar = () => {
           {/* Avatar + Name (Always Right-Aligned) */}
           <div className="flex items-center gap-2">
 
-            {/* {user?.photoURL ? (
+            {user?.photoURL ? (
               <div className="tooltip tooltip-bottom z-10">
                 <div className="tooltip-content">
                   <div className="animate-bounce text-orange-400 -rotate-10 text-2xl font-black">{user.displayName}</div>
@@ -124,7 +126,7 @@ const Navbar = () => {
               </div>
             ) : (
               <RxAvatar size={40} className="text-slate-500" />
-            )} */}
+            )}
           </div>
         </div>
       </div>
