@@ -1,9 +1,10 @@
 import React, { use, useState } from "react";
 import { Link, useNavigate } from "react-router";
-import { AuthContext } from "../main";
+
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { MdPersonAdd } from "react-icons/md";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../main";
 
 const Register = () => {
 

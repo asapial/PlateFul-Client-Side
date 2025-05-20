@@ -1,10 +1,10 @@
 import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
-import { AuthContext } from "../main";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { HiExclamationCircle } from "react-icons/hi";
 import { FiLogIn } from "react-icons/fi";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../main";
 
 
 const Login = () => {
