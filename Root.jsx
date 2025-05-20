@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
-import NavBar from './Components/NavBar';
-import { Outlet } from 'react-router';
-import Footer from './Components/Footer';
-import { AuthContext } from './main';
-import Loader from './Components/Loader';
-import { ToastContainer } from 'react-toastify';
+import React from 'react';
 import Navbar from './src/Components/common/NavBar';
-import LoadingSpinner from './src/Components/common/LoadingSpinner';
+import { Outlet } from 'react-router';
+import Footer from './src/Components/common/Footer';
+import { ToastContainer } from 'react-toastify';
+
 
 const Root = () => {
     // const {loading}=useContext(AuthContext);

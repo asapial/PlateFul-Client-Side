@@ -2,6 +2,7 @@ import React from "react";
 import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router";
 
+
 const Footer = () => {
   return (
 <footer className="bg-gradient-to-br from-[#0d0d0d] via-[#111827] to-[#1f2937] text-gray-400 pt-16 pb-12 px-4 sm:px-10 w-full flex  flex-col items-center justify-center ">
