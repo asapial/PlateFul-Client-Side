@@ -19,6 +19,7 @@ const AddRecipe = () => {
 
     // Get all checked categories as an array
     recipeData.categories = formData.getAll("categories");
+    recipeData.likes = 0;
 
     fetch('http://localhost:3000/addRecipe/',{
         

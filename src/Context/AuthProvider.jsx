@@ -86,6 +86,11 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe(); // Cleanup on unmount
   }, [authActionCount]); // 🔁 Re-run when any auth action occurs
 
+
+  // data fetching part 
+
+
+
   const userInfo = {
     createUser,
     loginUser,
