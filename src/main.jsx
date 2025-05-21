@@ -15,6 +15,8 @@ import Register from './Pages/Auth/Register.jsx';
 import AddRecipe from './Pages/Recipes/AddRecipe.jsx';
 import RecipeDetails from './Pages/Recipes/RecipeDetails.jsx';
 import AllRecipes from './Pages/Recipes/AllRecipes.jsx';
+import MyRecipes from './Pages/Recipes/MyRecipes.jsx';
+import ErrorPage from './Pages/ErrorPage.jsx';
 export const AuthContext=createContext(null);
 
 const router = createBrowserRouter([
@@ -50,6 +52,11 @@ const router = createBrowserRouter([
 
       },
       {
+        path:'myRecipes',
+        element:<PrivateRoute><MyRecipes></MyRecipes></PrivateRoute>
+
+      },
+      {
         path:'recipeDetails/:id',
         element:<PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>,
         loader:({params})=>fetch(`http://localhost:3000/recipeDetails/${params.id}`)
@@ -74,6 +81,10 @@ const router = createBrowserRouter([
       
     ]
   },
+  {
+    path:"*",
+    Component: ErrorPage
+  }
 ]);
 
 createRoot(document.getElementById('root')).render(

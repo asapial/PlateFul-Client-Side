@@ -161,8 +161,9 @@ const AddRecipe = () => {
             type="submit"
             className="w-full md:col-span-2 py-4 px-6 text-lg font-semibold text-white 
              rounded-full bg-gradient-to-r from-lime-500 via-emerald-500 to-green-600 
+              hover:from-lime-600 hover:to-green-700
              flex items-center justify-center gap-3
-             hover:from-lime-600 hover:to-green-700 
+             
              hover:shadow-xl hover:scale-[1.02]
              transition-all duration-300 ease-in-out 
              focus:outline-none focus:ring-4 focus:ring-lime-200 shadow-lg"

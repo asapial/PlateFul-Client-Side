@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../../main";
 import { FaClock, FaHeart, FaPen, FaTrash } from "react-icons/fa";
-import { toast } from "react-hot-toast";
 
-const MyRecipe = () => {
+
+const MyRecipes = () => {
   const { user } = useContext(AuthContext);
   const [recipes, setRecipes] = useState([]);
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -127,4 +127,4 @@ const MyRecipe = () => {
   );
 };
 
-export default MyRecipe;
+export default MyRecipes;
