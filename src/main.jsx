@@ -13,6 +13,8 @@ import PrivateRoute from './ProtectedRoute/PrivateRoute.jsx';
 import Login from './Pages/Auth/Login.jsx';
 import Register from './Pages/Auth/Register.jsx';
 import AddRecipe from './Pages/Recipes/AddRecipe.jsx';
+import RecipeDetails from './Pages/Recipes/RecipeDetails.jsx';
+import AllRecipes from './Pages/Recipes/AllRecipes.jsx';
 export const AuthContext=createContext(null);
 
 const router = createBrowserRouter([
@@ -40,6 +42,17 @@ const router = createBrowserRouter([
       {
         path:'addRecipe',
         element:<PrivateRoute><AddRecipe></AddRecipe></PrivateRoute>
+
+      },
+      {
+        path:'allRecipes',
+        element:<PrivateRoute><AllRecipes></AllRecipes></PrivateRoute>
+
+      },
+      {
+        path:'recipeDetails/:id',
+        element:<PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>,
+        loader:({params})=>fetch(`http://localhost:3000/recipeDetails/${params.id}`)
 
       },
       // {

@@ -1,9 +1,6 @@
-
-import { use, useContext, useEffect, useState } from "react";
-import { FaHeart } from "react-icons/fa";
-import { useNavigate } from "react-router";
-import { AuthContext } from "../../main";
+import { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
+import { Link, Navigate } from "react-router";
 
 const TopRecipes = () => {
 
@@ -29,12 +26,23 @@ const TopRecipes = () => {
       </div>
 
       <div className="text-center mt-8">
-        <button
-          onClick={() => navigate("/recipes")}
+
+
+                          <Link
+            to="/allRecipes"
+            className={({ isActive }) =>
+              `text-base font-medium hover:underline hover:text-blue-600 transition duration-200 ${
+                isActive ? "text-blue-700" : "text-slate-600"
+              }`
+            }
+          >
+                <button
           className="btn btn-secondary"
         >
           See All Recipes
         </button>
+          </Link>
+
       </div>
     </div>
   );

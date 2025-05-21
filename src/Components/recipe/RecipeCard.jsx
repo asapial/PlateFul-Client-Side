@@ -25,7 +25,7 @@ const RecipeCard = ({recipe}) => {
               </div>
               <div className="mt-4">
                 <button
-                  onClick={() => navigate(`/recipes/${recipe._id}`)}
+                  onClick={() => navigate(`/recipeDetails/${recipe._id}`)}
                   className="btn btn-sm btn-primary w-full"
                 >
                   View Details
@@ -37,3 +37,4 @@ const RecipeCard = ({recipe}) => {
 };
 
 export default RecipeCard;
+

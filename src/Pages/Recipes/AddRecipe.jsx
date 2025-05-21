@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   FaImage,
   FaUtensils,
@@ -9,8 +9,11 @@ import {
   FaTags,
   FaPlusCircle,
 } from "react-icons/fa";
+import { AuthContext } from "../../main";
 
 const AddRecipe = () => {
+
+  const {user}=useContext(AuthContext);
   const handleAddRecipe = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,6 +23,8 @@ const AddRecipe = () => {
     // Get all checked categories as an array
     recipeData.categories = formData.getAll("categories");
     recipeData.likes = 0;
+    recipeData.recipeOwner=user.displayName;
+    recipeData.recipeOwnerEmail=user.email;
 
     fetch('http://localhost:3000/addRecipe/',{
         
