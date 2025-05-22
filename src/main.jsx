@@ -17,6 +17,7 @@ import RecipeDetails from './Pages/Recipes/RecipeDetails.jsx';
 import AllRecipes from './Pages/Recipes/AllRecipes.jsx';
 import MyRecipes from './Pages/Recipes/MyRecipes.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
+import MyProfile from './Pages/Auth/MyProfile.jsx';
 export const AuthContext=createContext(null);
 
 const router = createBrowserRouter([
@@ -28,18 +29,17 @@ const router = createBrowserRouter([
         index:true,
         element:<Home></Home>
       },
-      {
-        path:'viewMore/:id',
-        // element:<PrivateRoute><ShowDetails></ShowDetails></PrivateRoute>
-
-      },
-      {
+{
         path:'login',
         Component:Login
       },
       {
         path:'register',
         Component:Register
+      },
+      {
+        path:'myProfile',
+        Component: MyProfile,
       },
       {
         path:'addRecipe',

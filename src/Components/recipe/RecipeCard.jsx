@@ -1,17 +1,36 @@
-import React from 'react';
-import { FaHeart } from 'react-icons/fa';
-import { useNavigate } from 'react-router';
+import React, { useContext } from "react";
+import { FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../../main";
 
-const RecipeCard = ({recipe}) => {
-      const navigate = useNavigate();
-    return (
-<div
+const RecipeCard = ({ recipe }) => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleLike = () => {
+    fetch(`http://localhost:3000/likedRecipe/${recipe._id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}), // you don't need to send likes manually if backend uses $inc
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        // Optionally: trigger a state update here to re-render likes
+      });
+  };
+
+  return (
+    <div
       key={recipe._id}
       className="bg-white/80 backdrop-blur-lg border border-gray-200 shadow-md hover:shadow-2xl transition-all duration-300 rounded-2xl overflow-hidden"
     >
       <figure className="h-48 overflow-hidden rounded-t-2xl">
         <img
-          src={recipe.image || "https://via.placeholder.com/300x200?text=No+Image"}
+          src={
+            recipe.image || "https://via.placeholder.com/300x200?text=No+Image"
+          }
           alt={recipe.title}
           className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
         />
@@ -22,9 +41,12 @@ const RecipeCard = ({recipe}) => {
         <p className="text-sm text-gray-500 mt-1">Cuisine: {recipe.cuisine}</p>
 
         <div className="flex items-center gap-2 text-rose-500 mt-3">
-            <button>
-                <FaHeart className="text-lg hover:scale-110 transition-transform duration-200" />
-            </button>
+          <button
+            disabled={user.email == recipe.recipeOwnerEmail}
+            onClick={handleLike}
+          >
+            <FaHeart className="text-lg hover:scale-110 transition-transform duration-200" />
+          </button>
           <span className="font-medium">{recipe.likes || 0}</span>
         </div>
 
@@ -37,8 +59,7 @@ const RecipeCard = ({recipe}) => {
         </button>
       </div>
     </div>
-    );
+  );
 };
 
 export default RecipeCard;
-
