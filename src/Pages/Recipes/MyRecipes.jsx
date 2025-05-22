@@ -161,63 +161,131 @@ const MyRecipes = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 max-w-lg w-full">
             <h3 className="text-xl font-bold mb-4">Update Recipe</h3>
-            <form onSubmit={handleUpdate} className="space-y-4">
-              <input
-                defaultValue={selectedRecipe.image}
-                name="image"
-                placeholder="Image URL"
-                className="input input-bordered w-full"
-              />
-              <input
-                defaultValue={selectedRecipe.title}
-                name="title"
-                placeholder="Title"
-                className="input input-bordered w-full"
-              />
-              <textarea
-                defaultValue={selectedRecipe.ingredients}
-                name="ingredients"
-                placeholder="Ingredients"
-                className="textarea textarea-bordered w-full"
-              />
-              <textarea
-                defaultValue={selectedRecipe.instructions}
-                name="instructions"
-                placeholder="Instructions"
-                className="textarea textarea-bordered w-full"
-              />
-              <input
-                defaultValue={selectedRecipe.cuisine}
-                name="cuisine"
-                placeholder="Cuisine"
-                className="input input-bordered w-full"
-              />
-              <input
-                defaultValue={selectedRecipe.prepTime}
-                name="prepTime"
-                placeholder="Prep Time"
-                className="input input-bordered w-full"
-              />
-              <input
-                defaultValue={selectedRecipe.categories.join(", ")}
-                name="categories"
-                placeholder="Categories (comma separated)"
-                className="input input-bordered w-full"
-              />
+        <form
+          onSubmit={handleUpdate}
+          className="w-full grid grid-cols-2 gap-5 "
+        >
+          {/* Image URL */}
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaImage /> Image URL
+            </label>
+            <input
+              type="text"
+              name="image"
+              placeholder="https://example.com/image.jpg"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+            />
+          </div>
 
-              <div className="flex justify-end gap-4 pt-4">
-                <button
-                  type="button"
-                  onClick={() => setSelectedRecipe(null)}
-                  className="btn"
-                >
-                  Cancel
-                </button>
-                <button type="submit" className="btn btn-success">
-                  Save
-                </button>
-              </div>
-            </form>
+          {/* Title */}
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaUtensils /> Recipe Title
+            </label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Creamy Alfredo Pasta"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+            />
+          </div>
+
+          {/* Ingredients */}
+          <div className="space-y-2 col-span-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaListUl /> Ingredients
+            </label>
+            <textarea
+              name="ingredients"
+              placeholder="• Pasta\n• Cream\n• Garlic"
+              rows={4}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition resize-none"
+            />
+          </div>
+
+          {/* Instructions */}
+          <div className="space-y-2 col-span-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaBookOpen /> Instructions
+            </label>
+            <textarea
+              name="instructions"
+              placeholder="1. Boil pasta...\n2. Make the sauce..."
+              rows={5}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition resize-none"
+            />
+          </div>
+
+          {/* Cuisine Type */}
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaGlobeAsia /> Cuisine Type
+            </label>
+            <select
+              name="cuisine"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+            >
+              <option value="">Select Cuisine</option>
+              <option value="Italian">Italian</option>
+              <option value="Mexican">Mexican</option>
+              <option value="Indian">Indian</option>
+              <option value="Chinese">Chinese</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+
+          {/* Preparation Time */}
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaClock /> Preparation Time (mins)
+            </label>
+            <input
+              type="number"
+              name="prepTime"
+              placeholder="45"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+            />
+          </div>
+
+          {/* Categories */}
+          <div className="space-y-2 col-span-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaTags /> Categories
+            </label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map(
+                (cat) => (
+                  <label key={cat} className="flex items-center gap-2">
+                    <input
+                      type="checkbox"
+                      name="categories"
+                      value={cat}
+                      className="h-5 w-5 text-primary border-gray-300 rounded focus:ring-2 focus:ring-primary transition"
+                    />
+                    <span className="text-gray-700">{cat}</span>
+                  </label>
+                )
+              )}
+            </div>
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="w-full md:col-span-2 py-4 px-6 text-lg font-semibold text-white 
+             rounded-full bg-gradient-to-r from-lime-500 via-emerald-500 to-green-600 
+              hover:from-lime-600 hover:to-green-700
+             flex items-center justify-center gap-3
+             
+             hover:shadow-xl hover:scale-[1.02]
+             transition-all duration-300 ease-in-out 
+             focus:outline-none focus:ring-4 focus:ring-lime-200 shadow-lg"
+          >
+            <FaPlusCircle className="text-2xl" />
+            Add Recipe
+          </button>
+        </form>
           </div>
         </div>
       )}
