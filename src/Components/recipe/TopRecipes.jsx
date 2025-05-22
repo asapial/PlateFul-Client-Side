@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import RecipeCard from "./RecipeCard";
 import { Link, Navigate } from "react-router";
+import { Typewriter } from "react-simple-typewriter";
 
 const TopRecipes = () => {
 
@@ -18,7 +19,17 @@ const TopRecipes = () => {
   return (
 <div className="max-w-7xl mx-auto px-4 py-16">
   <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-900 tracking-tight">
-    🍽️ Top <span className="text-primary">Recipes</span>
+    🍽️ Top 
+              <Typewriter
+            words={[' Recipes', ' Creations', ' Flavors', ' Dishes', ' Delights']}
+            loop={false}
+            cursor
+            cursorStyle='_'
+            typeSpeed={70}
+            deleteSpeed={50}
+            delaySpeed={1000}
+
+          />
   </h2>
 
   <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
