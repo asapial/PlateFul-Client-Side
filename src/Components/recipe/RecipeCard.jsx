@@ -4,10 +4,13 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../../main";
 
 const RecipeCard = ({ recipe }) => {
-  const { user } = useContext(AuthContext);
+  const { user ,loading } = useContext(AuthContext);
   const navigate = useNavigate();
+  if(loading){
+    return <h1>Loading</h1>
+  }
   const handleLike = () => {
-    fetch(`http://localhost:3000/likedRecipe/${recipe._id}`, {
+    fetch(`https://assignment10-server-seven-delta.vercel.app/likedRecipe/${recipe._id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -40,13 +43,21 @@ const RecipeCard = ({ recipe }) => {
         <h3 className="text-xl font-semibold text-gray-800">{recipe.title}</h3>
         <p className="text-sm text-gray-500 mt-1">Cuisine: {recipe.cuisine}</p>
 
-        <div className="flex items-center gap-2 text-rose-500 mt-3">
-          <button
+
+        <div className="flex items-center gap-2 text-rose-500  mt-3">
+                    {
+            user?( <button
             disabled={user.email == recipe.recipeOwnerEmail}
             onClick={handleLike}
           >
             <FaHeart className="text-lg hover:scale-110 transition-transform duration-200" />
-          </button>
+          </button>):( <button
+            disabled={true}
+            onClick={handleLike}
+          >
+            <FaHeart className="text-lg hover:scale-110 transition-transform duration-200" />
+          </button>)
+          }
           <span className="font-medium">{recipe.likes || 0}</span>
         </div>
 

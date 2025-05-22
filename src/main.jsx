@@ -59,7 +59,7 @@ const router = createBrowserRouter([
       {
         path:'recipeDetails/:id',
         element:<PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>,
-        loader:({params})=>fetch(`http://localhost:3000/recipeDetails/${params.id}`)
+        loader:({params})=>fetch(`https://assignment10-server-seven-delta.vercel.app/recipeDetails/${params.id}`)
 
       },
       // {

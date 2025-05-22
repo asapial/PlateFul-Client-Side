@@ -8,7 +8,7 @@ const TopRecipes = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/topRecipe")
+    fetch("https://assignment10-server-seven-delta.vercel.app/topRecipe")
       .then((res) => res.json())
       .then((data) => setTopRecipes(data))
       .catch((err) => console.error("Error fetching top recipes:", err));

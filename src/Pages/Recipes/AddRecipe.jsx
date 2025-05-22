@@ -26,7 +26,7 @@ const AddRecipe = () => {
     recipeData.recipeOwner=user.displayName;
     recipeData.recipeOwnerEmail=user.email;
 
-    fetch('http://localhost:3000/addRecipe/',{
+    fetch('https://assignment10-server-seven-delta.vercel.app/addRecipe/',{
         
       method: "POST",
       headers: {

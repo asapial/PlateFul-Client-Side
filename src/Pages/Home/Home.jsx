@@ -7,7 +7,7 @@ import Section1 from '../../Components/common/Section1';
 import Section2 from '../../Components/common/Section2';
 
 const Home = () => {
-    const topRecipeDataPromise= fetch('http://localhost:3000/topRecipe').then(res=>res.json())
+    const topRecipeDataPromise= fetch('https://assignment10-server-seven-delta.vercel.app/topRecipe').then(res=>res.json())
     console.log(topRecipeDataPromise);
     return (
         <div className=''>
