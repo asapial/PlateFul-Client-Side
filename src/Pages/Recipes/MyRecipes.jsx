@@ -134,19 +134,19 @@ const handleUpdateSubmit = async (e) => {
 
               {/* Cuisine */}
               <p className="text-sm text-gray-500">
-                <span className="font-medium text-gray-700">Cuisine:</span>{" "}
+                <span className="font-medium text-accent-800">Cuisine:</span>{" "}
                 {recipe.cuisine}
               </p>
 
               {/* Ingredients */}
               <p className="text-sm text-gray-600 whitespace-pre-line">
-                <span className="font-medium text-gray-700">Ingredients:</span>{" "}
+                <span className="font-medium text-accent-800">Ingredients:</span>{" "}
                 {recipe.ingredients}
               </p>
 
               {/* Instructions */}
-              <p className="text-sm text-gray-700 whitespace-pre-line">
-                <span className="font-medium text-gray-700">Instructions:</span>{" "}
+              <p className="text-sm text-accent-800 whitespace-pre-line">
+                <span className="font-medium text-accent-800">Instructions:</span>{" "}
                 {recipe.instructions}
               </p>
 
@@ -205,7 +205,7 @@ const handleUpdateSubmit = async (e) => {
 
             {/* Modal Content */}
             <div className="bg-white dark:bg-base-100 rounded-3xl shadow-xl p-10 border border-neutral/20 transition-all duration-300 my-10">
-              <h2 className="text-3xl font-semibold mb-6 text-center text-black ">
+              <h2 className="text-3xl font-semibold mb-6 text-center text-accent-800 ">
                 ✨ Update Recipe
               </h2>
               <form
@@ -214,7 +214,7 @@ const handleUpdateSubmit = async (e) => {
               >
                 {/* Image URL */}
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-accent-800">
                     <FaImage /> Image URL
                   </label>
                   <input
@@ -228,7 +228,7 @@ const handleUpdateSubmit = async (e) => {
 
                 {/* Title */}
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-accent-800">
                     <FaUtensils /> Recipe Title
                   </label>
                   <input
@@ -242,7 +242,7 @@ const handleUpdateSubmit = async (e) => {
 
                 {/* Ingredients */}
                 <div className="space-y-2 col-span-2">
-                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-accent-800">
                     <FaListUl /> Ingredients
                   </label>
                   <textarea
@@ -256,7 +256,7 @@ const handleUpdateSubmit = async (e) => {
 
                 {/* Instructions */}
                 <div className="space-y-2 col-span-2">
-                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-accent-800">
                     <FaBookOpen /> Instructions
                   </label>
                   <textarea
@@ -270,7 +270,7 @@ const handleUpdateSubmit = async (e) => {
 
                 {/* Cuisine Type */}
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-accent-800">
                     <FaGlobeAsia /> Cuisine Type
                   </label>
                   <select
@@ -289,7 +289,7 @@ const handleUpdateSubmit = async (e) => {
 
                 {/* Preparation Time */}
                 <div className="space-y-2">
-                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-accent-800">
                     <FaClock /> Preparation Time (mins)
                   </label>
                   <input
@@ -303,7 +303,7 @@ const handleUpdateSubmit = async (e) => {
 
                 {/* Categories */}
                 <div className="space-y-2 col-span-2">
-                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-accent-800">
                     <FaTags /> Categories
                   </label>
                   <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -319,7 +319,7 @@ const handleUpdateSubmit = async (e) => {
                             )}
                             className="h-5 w-5 text-primary border-gray-300 rounded focus:ring-2 focus:ring-primary transition"
                           />
-                          <span className="text-gray-700">{cat}</span>
+                          <span className="text-accent-800">{cat}</span>
                         </label>
                       )
                     )}

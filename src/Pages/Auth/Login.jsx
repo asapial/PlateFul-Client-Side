@@ -78,18 +78,18 @@ const Login = () => {
 
   return (
 
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-base-300 to-base-100 flex items-center justify-center px-4">
     <title>Login | BoxaBly</title>
 
-      <div className="bg-white shadow-2xl rounded-3xl p-8 max-w-md w-full space-y-6">
-        <h2 className="text-3xl font-bold text-center text-gray-800">
+      <div className="bg-base-100 shadow-2xl rounded-3xl p-8 max-w-md w-full space-y-6">
+        <h2 className="text-3xl font-bold text-center text-accent-800">
           Login
         </h2>
 
         <form className="space-y-5" onSubmit={handleLogin}>
   {/* Email Field */}
   <div className="space-y-1">
-    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+    <label htmlFor="email" className="block text-sm font-medium text-accent-800">
       Email Address
     </label>
     <input
@@ -103,7 +103,7 @@ const Login = () => {
 
   {/* Password Field */}
   <div className="space-y-1 relative">
-    <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+    <label htmlFor="password" className="block text-sm font-medium text-accent-800">
       Password
     </label>
     <input
@@ -175,7 +175,7 @@ const Login = () => {
             alt="Google"
             className="w-5 h-5"
           />
-          <span className="text-gray-700 font-medium group-hover:text-gray-900">
+          <span className="text-accent font-medium group-hover:text-gray-900">
             Continue with Google
           </span>
         </button>

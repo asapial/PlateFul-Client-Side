@@ -77,17 +77,17 @@ const Register = () => {
         }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-300 flex items-center justify-center px-4">
     <title>Register | BoxaBly</title>
 
-      <div className="bg-white shadow-2xl rounded-3xl p-8 max-w-md w-full space-y-6">
-        <h2 className="text-3xl font-bold text-center text-gray-800">
+      <div className="bg-base-100 shadow-2xl rounded-3xl p-8 max-w-md w-full space-y-6">
+        <h2 className="text-3xl font-bold text-center text-accent-800">
           Create an Account
         </h2>
 
         <form className="space-y-4" onSubmit={handleRegister}>
   <div className="space-y-2">
-    <label htmlFor="name" className="text-gray-700 font-semibold">Full Name</label>
+    <label htmlFor="name" className="text-accent-700 font-semibold">Full Name</label>
     <input
       type="text"
       id="name"
@@ -98,7 +98,7 @@ const Register = () => {
   </div>
 
   <div className="space-y-2">
-    <label htmlFor="email" className="text-gray-700 font-semibold">Email Address</label>
+    <label htmlFor="email" className="text-accent-700 font-semibold">Email Address</label>
     <input
       type="email"
       id="email"
@@ -109,7 +109,7 @@ const Register = () => {
   </div>
 
   <div className="space-y-2">
-    <label htmlFor="photo" className="text-gray-700 font-semibold">Photo URL</label>
+    <label htmlFor="photo" className="text-accent-700 font-semibold">Photo URL</label>
     <input
       type="text"
       id="photo"
@@ -120,7 +120,7 @@ const Register = () => {
   </div>
 
   <div className="relative space-y-2">
-    <label htmlFor="password" className="text-gray-700 font-semibold">Password</label>
+    <label htmlFor="password" className="text-accent-700 font-semibold">Password</label>
     <input
       type={isShow ? "text" : "password"}
       id="password"
@@ -141,7 +141,7 @@ const Register = () => {
 
   <button
     type="submit"
-    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold py-3 rounded-2xl shadow-lg shadow-blue-300/50 hover:shadow-blue-400/50 transition-all duration-300 ease-in-out"
+    className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white font-semibold py-3 rounded-2xl shadow-sm shadow-blue-300/50 hover:shadow-blue-400/50 transition-all duration-300 ease-in-out"
   >
     <MdPersonAdd className="text-xl" />
     Register
@@ -149,7 +149,7 @@ const Register = () => {
 </form>
 
 
-        <div className="text-center text-gray-600 text-sm">
+        <div className="text-center text-accent-600 text-sm">
           Already have an account?
           <Link
             to="/login"
@@ -161,7 +161,7 @@ const Register = () => {
 
         <div className="flex items-center justify-between">
           <hr className="w-full border-gray-300" />
-          <span className="px-2 text-gray-500 text-sm">OR</span>
+          <span className="px-2 text-accent-500 text-sm">OR</span>
           <hr className="w-full border-gray-300" />
         </div>
 
@@ -174,7 +174,7 @@ const Register = () => {
             alt="Google"
             className="w-5 h-5"
           />
-          <span className="text-gray-700 font-medium group-hover:text-gray-900">
+          <span className="text-accent font-medium group-hover:text-accent">
             Continue with Google
           </span>
         </button>

@@ -14,7 +14,7 @@ const Section2 = () => {
   }, []);
 
   return (
-    <section className="bg-white py-16 w-10/12 mx-auto">
+    <section className="bg-base-300 py-16 w-10/12 mx-auto">
       <div className="justify-around mx-auto flex flex-col md:flex-row items-center gap-10">
 
         {/* Image */}
@@ -22,7 +22,7 @@ const Section2 = () => {
           className="md:w-1/2"
           data-aos="fade-right"
         >
-                        <Lottie animationData={cooking}  />;
+            <Lottie animationData={cooking}  />;
         </div>
 
         {/* Content */}
@@ -30,10 +30,10 @@ const Section2 = () => {
           className="md:w-1/2"
           data-aos="fade-left"
         >
-          <h2 className="text-4xl font-light text-gray-800 mb-4">
+          <h2 className="text-4xl font-light text-accent mb-4">
             All About <span className="font-bold text-green-600">Plateful</span>
           </h2>
-          <p className="text-gray-600 leading-relaxed mb-6 text-xl">
+          <p className="text-accent leading-relaxed mb-6 text-xl">
             Plateful is your ultimate culinary companion — discover, cook, and share mouthwatering recipes from around the world. Whether you're a home cook or a food enthusiast, Plateful brings flavor to your fingertips. One platform. Infinite inspiration.
           </p>
 

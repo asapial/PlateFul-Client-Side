@@ -8,20 +8,10 @@ const Home = () => {
     const topRecipeDataPromise= fetch('https://assignment10-server-seven-delta.vercel.app/topRecipe').then(res=>res.json())
     console.log(topRecipeDataPromise);
     return (
-        <div className=''>
-            <div>
-                <button className="btn btn-neutral">Neutral</button>
-                <button className="btn btn-primary">Primary</button>
-                <button className="btn btn-secondary">Secondary</button>
-                <button className="btn btn-accent">Accent</button>
-                <button className="btn btn-info">Info</button>
-                <button className="btn btn-success">Success</button>
-                <button className="btn btn-warning">Warning</button>
-                <button className="btn btn-error">Error</button>
-            </div>
+        <div className=' bg-base-300'>
             <Slider></Slider>
             <Section2></Section2>
-            <div className="topRecipeContainer bg-slate-100">
+            <div className="topRecipeContainer bg-base-100">
             <TopRecipes  topRecipeDataPromise={topRecipeDataPromise}></TopRecipes>
             </div>
             <Section1></Section1>

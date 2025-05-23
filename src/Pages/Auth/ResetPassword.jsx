@@ -31,9 +31,9 @@ const ResetPassword = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center px-4">
-      <div className="bg-white shadow-2xl rounded-3xl p-8 max-w-md w-full space-y-6">
-        <h2 className="text-3xl font-bold text-center text-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-300 flex items-center justify-center px-4">
+      <div className="bg-base-300 shadow-xl rounded-3xl p-8 max-w-md w-full space-y-6">
+        <h2 className="text-3xl font-bold text-center text-accent-800">
           Forgot Password
         </h2>
 
@@ -55,7 +55,7 @@ const ResetPassword = () => {
           </button>
         </form>
 
-        <p className="text-sm text-center text-gray-600">
+        <p className="text-sm text-center text-accent-600">
           You'll be redirected to Gmail after clicking reset.
         </p>
       </div>

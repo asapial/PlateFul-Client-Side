@@ -17,8 +17,8 @@ const TopRecipes = () => {
 
 
   return (
-<div className="max-w-7xl mx-auto px-4 py-16">
-  <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-900 tracking-tight">
+<div className="max-w-7xl mx-auto px-4 py-16 bg-base-100">
+  <h2 className="text-4xl font-extrabold text-center mb-12 text-accent tracking-tight">
     🍽️ Top 
               <Typewriter
             words={[' Recipes', ' Creations', ' Flavors', ' Dishes', ' Delights']}
