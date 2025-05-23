@@ -20,6 +20,7 @@ import ErrorPage from './Pages/ErrorPage.jsx';
 import MyProfile from './Pages/Auth/MyProfile.jsx';
 import ResetPassword from './Pages/Auth/ResetPassword.jsx';
 import NotFound from './Pages/NotFound.jsx';
+import { ThemeProvider } from './Context/ThemeContext.jsx';
 export const AuthContext=createContext(null);
 
 const router = createBrowserRouter([
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
       },
       {
         path:'allRecipes',
-        element:<PrivateRoute><AllRecipes></AllRecipes></PrivateRoute>
+        element:<AllRecipes></AllRecipes>
 
       },
       {
@@ -67,23 +68,7 @@ const router = createBrowserRouter([
         element:<PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>,
         loader:({params})=>fetch(`https://assignment10-server-seven-delta.vercel.app/recipeDetails/${params.id}`)
 
-      },
-      // {
-      //   path:"faq",
-      //   element:<PrivateRoute><Faq></Faq></PrivateRoute>
-      // },
-      // {
-      //   path:"resetPassword",
-      //   element:<PrivateRoute><ResetPassword></ResetPassword></PrivateRoute>
-      // },
-      // {
-      //   path:"termsAndCondition",
-      //   element:<TermsAndConditionPage></TermsAndConditionPage>
-      // },
-      // {
-      //   path:"privacyPolicy",
-      //   element:<PrivacyPolicy></PrivacyPolicy>
-      // },
+      }
       
     ]
   },
@@ -94,8 +79,11 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById('root')).render(
-  <AuthProvider>
+  <ThemeProvider>
+    <AuthProvider>
     <RouterProvider router={router} />
   </AuthProvider>
+  </ThemeProvider>
+
 
 )

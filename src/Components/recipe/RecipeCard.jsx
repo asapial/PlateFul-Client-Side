@@ -4,19 +4,22 @@ import { useNavigate } from "react-router";
 import { AuthContext } from "../../main";
 
 const RecipeCard = ({ recipe }) => {
-  const { user ,loading } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
   const navigate = useNavigate();
-  if(loading){
-    return <h1>Loading</h1>
+  if (loading) {
+    return <h1>Loading</h1>;
   }
   const handleLike = () => {
-    fetch(`https://assignment10-server-seven-delta.vercel.app/likedRecipe/${recipe._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({}), // you don't need to send likes manually if backend uses $inc
-    })
+    fetch(
+      `https://assignment10-server-seven-delta.vercel.app/likedRecipe/${recipe._id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({}), // you don't need to send likes manually if backend uses $inc
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -39,24 +42,30 @@ const RecipeCard = ({ recipe }) => {
         />
       </figure>
 
+
+
       <div className="p-5">
         <h3 className="text-xl font-semibold text-gray-800">{recipe.title}</h3>
         <p className="text-sm text-gray-500 mt-1">Cuisine: {recipe.cuisine}</p>
 
+        <div className="flex items-center gap-2   mt-3">
+          {
+            user?((user.email == recipe.recipeOwnerEmail)?(<button
+              disabled={true}
 
-        <div className="flex items-center gap-2 text-rose-500  mt-3">
-                    {
-            user?( <button
-            disabled={user.email == recipe.recipeOwnerEmail}
-            onClick={handleLike}
-          >
-            <FaHeart className="text-lg hover:scale-110 transition-transform duration-200" />
-          </button>):( <button
-            disabled={true}
-            onClick={handleLike}
-          >
-            <FaHeart className="text-lg hover:scale-110 transition-transform duration-200" />
-          </button>)
+            >
+              <FaHeart className="text-lg hover:scale-110 transition-transform duration-200 text-slate-500" size={25} />
+            </button>):(<button
+              disabled={user.email == recipe.recipeOwnerEmail}
+              onClick={handleLike}
+            >
+              <FaHeart className="text-lg hover:scale-110 transition-transform duration-200 text-rose-500" size={25} />
+            </button>)):(<button
+              disabled={true}
+
+            >
+              <FaHeart className="text-lg hover:scale-110 transition-transform duration-200 text-slate-500" size={25} />
+            </button>)
           }
           <span className="font-medium">{recipe.likes || 0}</span>
         </div>
