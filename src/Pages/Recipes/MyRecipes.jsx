@@ -54,17 +54,17 @@ const handleDelete = async (id) => {
       });
 
       if (res.ok) {
-        toast.success("Recipe deleted successfully");
+        
+        Swal.fire("Recipe deleted successfully");
         setRecipes((prev) => prev.filter((r) => r._id !== id));
       } else {
-        toast.error("Failed to delete the recipe.");
+        Swal.fire("Failed to delete the recipe.");
       }
     } catch (err) {
-      toast.error("An error occurred while deleting.");
-      console.error(err);
+      Swal.fire("An error occurred while deleting.");
     }
   } else if (result.isDenied) {
-    Swal.fire("Changes are not saved", "", "info");
+    Swal.fire("Ok, your recipe is safe!");
   }
 };
 
@@ -92,7 +92,10 @@ const handleUpdateSubmit = async (e) => {
   });
 
   if (res.ok) {
-    toast.success("✅ Recipe updated successfully");
+
+    Swal.fire("✅ Recipe updated successfully");
+
+
     setRecipes(
       recipes.map((r) =>
         r._id === editRecipe._id ? { ...r, ...updatedData } : r
@@ -100,7 +103,8 @@ const handleUpdateSubmit = async (e) => {
     );
     setEditRecipe(null);
   } else {
-    toast.error("❌ Failed to update recipe");
+        Swal.fire("❌ Failed to update recipe");
+
   }
 };
 
@@ -134,19 +138,19 @@ const handleUpdateSubmit = async (e) => {
 
               {/* Cuisine */}
               <p className="text-sm text-gray-500">
-                <span className="font-medium text-accent-800">Cuisine:</span>{" "}
+                <span className="font-medium text-gray-700">Cuisine:</span>{" "}
                 {recipe.cuisine}
               </p>
 
               {/* Ingredients */}
               <p className="text-sm text-gray-600 whitespace-pre-line">
-                <span className="font-medium text-accent-800">Ingredients:</span>{" "}
+                <span className="font-medium text-gray-700">Ingredients:</span>{" "}
                 {recipe.ingredients}
               </p>
 
               {/* Instructions */}
-              <p className="text-sm text-accent-800 whitespace-pre-line">
-                <span className="font-medium text-accent-800">Instructions:</span>{" "}
+              <p className="text-sm  text-gray-700 whitespace-pre-line">
+                <span className="font-medium text-gray-700">Instructions:</span>{" "}
                 {recipe.instructions}
               </p>
 

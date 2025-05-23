@@ -21,6 +21,8 @@ import MyProfile from './Pages/Auth/MyProfile.jsx';
 import ResetPassword from './Pages/Auth/ResetPassword.jsx';
 import NotFound from './Pages/NotFound.jsx';
 import { ThemeProvider } from './Context/ThemeContext.jsx';
+import CopyRightNotice from './Pages/Footer/CopyRightNotice.jsx';
+import ContactInformation from './Pages/Footer/ContactInformation.jsx';
 export const AuthContext=createContext(null);
 
 const router = createBrowserRouter([
@@ -68,7 +70,17 @@ const router = createBrowserRouter([
         element:<PrivateRoute><RecipeDetails></RecipeDetails></PrivateRoute>,
         loader:({params})=>fetch(`https://assignment10-server-seven-delta.vercel.app/recipeDetails/${params.id}`)
 
-      }
+      },
+      {
+        path:'copyRightInformation',
+        Component: CopyRightNotice,
+
+      },
+      {
+        path:'contact',
+        Component: ContactInformation,
+
+      },
       
     ]
   },

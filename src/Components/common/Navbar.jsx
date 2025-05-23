@@ -39,7 +39,8 @@ const Navbar = () => {
         Home
       </NavLink>
       {!user && (
-        <NavLink
+        <>
+                 <NavLink
           to="/login"
           className={({ isActive }) =>
             `text-base font-medium hover:underline hover:text-info transition duration-200 ${
@@ -49,8 +50,7 @@ const Navbar = () => {
         >
           Login
         </NavLink>
-      )}
-      <NavLink
+        <NavLink
         to="/register"
         className={({ isActive }) =>
           `text-base font-medium hover:underline hover:text-info transition duration-200 ${
@@ -60,6 +60,10 @@ const Navbar = () => {
       >
         Register
       </NavLink>
+        </>
+
+      )}
+
       {user && (
         <>
           <NavLink
@@ -67,12 +71,6 @@ const Navbar = () => {
             className="text-base font-medium text-primary hover:underline hover:text-info transition duration-200"
           >
             MyProfile
-          </NavLink>
-          <NavLink
-            to="/myRecipes"
-            className="text-base font-medium text-primary hover:underline hover:text-info transition duration-200"
-          >
-            My Recipe
           </NavLink>
         </>
       )}
@@ -86,6 +84,22 @@ const Navbar = () => {
       >
         AddRecipe
       </NavLink>
+      <NavLink
+        to="/allRecipes"
+        className={({ isActive }) =>
+          `text-base font-medium hover:underline hover:text-info transition duration-200 ${
+            isActive ? "text-info" : "text-primary"
+          }`
+        }
+      >
+        All Recipe
+      </NavLink>
+                <NavLink
+            to="/myRecipes"
+            className="text-base font-medium text-primary hover:underline hover:text-info transition duration-200"
+          >
+            My Recipe
+          </NavLink>
     </div>
 
     {/* Right - Sign Out & Avatar */}

@@ -11,9 +11,10 @@ import {
 } from "react-icons/fa";
 import { AuthContext } from "../../main";
 import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 
 const AddRecipe = () => {
-  
+
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleAddRecipe = async (e) => {
@@ -45,15 +46,15 @@ const AddRecipe = () => {
       console.log("Response:", data);
 
       if (data.acknowledged) {
-        alert("✅ Recipe added successfully!");
+        Swal.fire("✅ Recipe added successfully!");
         form.reset();
         navigate("/myRecipes");
       } else {
-        alert("❌ Failed to add recipe.");
+        Swal.fire("❌ Failed to add recipe.");
       }
     } catch (error) {
       console.error("Error submitting recipe:", error);
-      alert("⚠️ Something went wrong. Please try again later.");
+      Swal.fire("⚠️ Something went wrong. Please try again later.");
     }
   };
   return (
