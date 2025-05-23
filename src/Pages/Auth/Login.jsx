@@ -1,7 +1,6 @@
 import React, { use, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { HiExclamationCircle } from "react-icons/hi";
 import { FiLogIn } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../main";
@@ -38,7 +37,7 @@ const Login = () => {
         }
 
         loginUser(email,password)
-        .then(user=>{
+        .then(()=>{
           toast('🎉 Welcome back! Login successful.', {
             position: "top-right",
             autoClose: 5000,
@@ -58,7 +57,7 @@ const Login = () => {
 
     const handleGoogoleLogin=()=>{
       loginWithGoogle()
-      .then(user=>{
+      .then(()=>{
         toast('🎉 Welcome back! Login successful.', {
           position: "top-right",
           autoClose: 5000,

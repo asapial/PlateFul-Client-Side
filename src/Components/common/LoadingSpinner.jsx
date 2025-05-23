@@ -1,9 +1,11 @@
+import Lottie from 'lottie-react';
 import React from 'react';
+import loading from '/src/assets/loadingBar.json';
 
 const LoadingSpinner = () => {
     return (
         <div className=' flex justify-center items-center min-h-screen'>
-            <span className="loading loading-bars loading-xl"></span>
+            <Lottie animationData={loading} className='h-40'  />;
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import {  useNavigate } from "react-router";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { FiMail } from "react-icons/fi";
 
 import { toast } from "react-toastify";

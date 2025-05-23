@@ -1,7 +1,5 @@
 import React from 'react';
 import TopRecipes from '../../Components/recipe/TopRecipes';
-import Lottie from 'lottie-react';
-import groovyWalkAnimation from "/src/assets/walking.json";
 import Slider from '../../Components/common/Slider';
 import Section1 from '../../Components/common/Section1';
 import Section2 from '../../Components/common/Section2';

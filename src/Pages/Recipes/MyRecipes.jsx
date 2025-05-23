@@ -22,6 +22,7 @@ import {
 import { AuthContext } from "../../main";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import LoadingSpinner from "../../Components/common/LoadingSpinner";
 
 const MyRecipe = () => {
   const { user } = useContext(AuthContext);
@@ -29,8 +30,9 @@ const MyRecipe = () => {
   const [editRecipe, setEditRecipe] = useState(null);
 
   useEffect(() => {
+    <LoadingSpinner></LoadingSpinner>
     if (user?.email) {
-      fetch(`http://localhost:3000/myRecipes?email=${user.email}`)
+      fetch(`https://assignment10-server-seven-delta.vercel.app/myRecipes?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => setRecipes(data));
     }
@@ -47,7 +49,7 @@ const handleDelete = async (id) => {
 
   if (result.isConfirmed) {
     try {
-      const res = await fetch(`http://localhost:3000/recipes/${id}`, {
+      const res = await fetch(`https://assignment10-server-seven-delta.vercel.app/recipes/${id}`, {
         method: "DELETE",
       });
 
@@ -81,7 +83,7 @@ const handleUpdateSubmit = async (e) => {
     categories: formData.getAll("categories"), // ✅ Gets all checked values
   };
 
-  const res = await fetch(`http://localhost:3000/recipes/${editRecipe._id}`, {
+  const res = await fetch(`https://assignment10-server-seven-delta.vercel.app/recipes/${editRecipe._id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
