@@ -66,41 +66,46 @@ const handleDelete = async (id) => {
   }
 };
 
-  const handleUpdateSubmit = async (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const updatedData = {
-      title: form.title.value,
-      ingredients: form.ingredients.value,
-      instructions: form.instructions.value,
-      cuisine: form.cuisine.value,
-      prepTime: form.prepTime.value,
-      categories: form.categories.value.split(",").map((s) => s.trim()),
-      image: form.image.value,
-    };
+const handleUpdateSubmit = async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const formData = new FormData(form);
 
-    const res = await fetch(`http://localhost:3000/recipes/${editRecipe._id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updatedData),
-    });
-
-    if (res.ok) {
-      toast.success("Recipe updated successfully");
-      setRecipes(
-        recipes.map((r) =>
-          r._id === editRecipe._id ? { ...r, ...updatedData } : r
-        )
-      );
-      setEditRecipe(null);
-    }
+  const updatedData = {
+    title: formData.get("title"),
+    ingredients: formData.get("ingredients"),
+    instructions: formData.get("instructions"),
+    cuisine: formData.get("cuisine"),
+    prepTime: formData.get("prepTime"),
+    image: formData.get("image"),
+    categories: formData.getAll("categories"), // ✅ Gets all checked values
   };
+
+  const res = await fetch(`http://localhost:3000/recipes/${editRecipe._id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedData),
+  });
+
+  if (res.ok) {
+    toast.success("✅ Recipe updated successfully");
+    setRecipes(
+      recipes.map((r) =>
+        r._id === editRecipe._id ? { ...r, ...updatedData } : r
+      )
+    );
+    setEditRecipe(null);
+  } else {
+    toast.error("❌ Failed to update recipe");
+  }
+};
+
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold mb-8 text-primary">My Recipes</h2>
+      <h2 className="text-3xl font-bold mb-8 text-primary text-center">My Recipes</h2>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
@@ -195,14 +200,6 @@ const handleDelete = async (id) => {
 <div className="fixed inset-0 z-50 bg-white/70 backdrop-blur-sm flex items-center justify-center px-4 h-screen ">
           {/* Overlay animation */}
 <div className="animate-fadeInUp relative w-full max-w-3xl max-h-[95vh] overflow-y-auto my-10">
-            {/* Close Button */}
-            {/* <button
-              onClick={() => setEditRecipe(null)}
-              className="absolute -top-4 -right-4 bg-white text-red-500 hover:text-red-700 shadow-md p-2 rounded-full transition"
-              aria-label="Close Modal"
-            >
-              <FaTimes size={20} />
-            </button> */}
 
             {/* Modal Content */}
             <div className="bg-white dark:bg-base-100 rounded-3xl shadow-xl p-10 border border-neutral/20 transition-all duration-300 my-10">

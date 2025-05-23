@@ -13,10 +13,10 @@ import { AuthContext } from "../../main";
 import { useNavigate } from "react-router";
 
 const AddRecipe = () => {
-
-  const {user}=useContext(AuthContext);
-  const navigate=useNavigate();
-  const handleAddRecipe = (e) => {
+  
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const handleAddRecipe = async (e) => {
     e.preventDefault();
     const form = e.target;
     const formData = new FormData(form);
@@ -25,27 +25,36 @@ const AddRecipe = () => {
     // Get all checked categories as an array
     recipeData.categories = formData.getAll("categories");
     recipeData.likes = 0;
-    recipeData.recipeOwner=user.displayName;
-    recipeData.recipeOwnerEmail=user.email;
 
-    fetch('https://assignment10-server-seven-delta.vercel.app/addRecipe/',{
-        
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(recipeData),
-    })
-    .then(res=>res.json())
-    .then(data=>{
-        console.log(data);
-        if(data.acknowledged){
-            alert('Recipe added successfully');
-            form.reset();
-            navigate('/myRecipes')
+    recipeData.recipeOwner = user.displayName;
+    recipeData.recipeOwnerEmail = user.email;
+
+    try {
+      const res = await fetch(
+        "https://assignment10-server-seven-delta.vercel.app/addRecipe/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(recipeData),
         }
-    })
+      );
 
+      const data = await res.json();
+      console.log("Response:", data);
+
+      if (data.acknowledged) {
+        alert("✅ Recipe added successfully!");
+        form.reset();
+        navigate("/myRecipes");
+      } else {
+        alert("❌ Failed to add recipe.");
+      }
+    } catch (error) {
+      console.error("Error submitting recipe:", error);
+      alert("⚠️ Something went wrong. Please try again later.");
+    }
   };
   return (
     <div className="my-20   w-11/12 mx-auto">
@@ -54,22 +63,9 @@ const AddRecipe = () => {
           <FaUtensils /> Add a New Recipe
         </h2>
         <form
-          className="w-full grid grid-cols-2 gap-5 "
+          className="w-full flex flex-col lg:grid  lg:grid-cols-2 gap-5 "
           onSubmit={handleAddRecipe}
         >
-          {/* Image URL */}
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaImage /> Image URL
-            </label>
-            <input
-              type="text"
-              name="image"
-              placeholder="https://example.com/image.jpg"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
-            />
-          </div>
-
           {/* Title */}
           <div className="space-y-2">
             <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
@@ -79,6 +75,19 @@ const AddRecipe = () => {
               type="text"
               name="title"
               placeholder="Creamy Alfredo Pasta"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+            />
+          </div>
+
+          {/* Image URL */}
+          <div className="space-y-2">
+            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+              <FaImage /> Image URL
+            </label>
+            <input
+              type="text"
+              name="image"
+              placeholder="https://example.com/image.jpg"
               className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
             />
           </div>
