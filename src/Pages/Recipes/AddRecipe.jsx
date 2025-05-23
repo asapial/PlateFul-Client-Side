@@ -10,10 +10,12 @@ import {
   FaPlusCircle,
 } from "react-icons/fa";
 import { AuthContext } from "../../main";
+import { useNavigate } from "react-router";
 
 const AddRecipe = () => {
 
   const {user}=useContext(AuthContext);
+  const navigate=useNavigate();
   const handleAddRecipe = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -37,9 +39,13 @@ const AddRecipe = () => {
     .then(res=>res.json())
     .then(data=>{
         console.log(data);
+        if(data.acknowledged){
+            alert('Recipe added successfully');
+            form.reset();
+            navigate('/myRecipes')
+        }
     })
 
-    console.log(recipeData);
   };
   return (
     <div className="my-20   w-11/12 mx-auto">

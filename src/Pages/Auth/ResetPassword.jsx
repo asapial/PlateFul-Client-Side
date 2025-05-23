@@ -1,0 +1,66 @@
+import {  useNavigate } from "react-router";
+import { useContext, useState } from "react";
+import { FiMail } from "react-icons/fi";
+
+import { toast } from "react-toastify";
+import { AuthContext } from "../../main";
+
+const ResetPassword = () => {
+  const navigate = useNavigate();
+  const {resetEmail}=useContext(AuthContext);
+
+
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    const email=e.target.email.value;
+    resetEmail(email).then(()=>{
+        window.open('https://mail.google.com', '_blank');
+        navigate("/login");
+                      toast.success('📬 Password reset link sent. Check your email!', {
+                        position: "top-right",
+                        autoClose: 5000,
+                        hideProgressBar: false,
+                        closeOnClick: false,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center px-4">
+      <div className="bg-white shadow-2xl rounded-3xl p-8 max-w-md w-full space-y-6">
+        <h2 className="text-3xl font-bold text-center text-gray-800">
+          Forgot Password
+        </h2>
+
+        <form className="space-y-4" onSubmit={handleReset}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Enter your email"
+            className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-400"
+            required
+          />
+
+          <button
+            type="submit"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 rounded-2xl shadow-lg hover:shadow-xl transition duration-300 ease-in-out"
+          >
+            <FiMail className="text-lg" />
+            Reset Password
+          </button>
+        </form>
+
+        <p className="text-sm text-center text-gray-600">
+          You'll be redirected to Gmail after clicking reset.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export default ResetPassword;

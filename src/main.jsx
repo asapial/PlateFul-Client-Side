@@ -18,6 +18,8 @@ import AllRecipes from './Pages/Recipes/AllRecipes.jsx';
 import MyRecipes from './Pages/Recipes/MyRecipes.jsx';
 import ErrorPage from './Pages/ErrorPage.jsx';
 import MyProfile from './Pages/Auth/MyProfile.jsx';
+import ResetPassword from './Pages/Auth/ResetPassword.jsx';
+import NotFound from './Pages/NotFound.jsx';
 export const AuthContext=createContext(null);
 
 const router = createBrowserRouter([
@@ -36,6 +38,10 @@ const router = createBrowserRouter([
       {
         path:'register',
         Component:Register
+      },
+      {
+        path:'resetPassword',
+        Component: ResetPassword
       },
       {
         path:'myProfile',
@@ -83,7 +89,7 @@ const router = createBrowserRouter([
   },
   {
     path:"*",
-    Component: ErrorPage
+    Component: NotFound
   }
 ]);
 

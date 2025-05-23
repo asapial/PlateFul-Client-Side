@@ -66,10 +66,10 @@ const Navbar = () => {
                 MyProfile
               </NavLink>
               <NavLink
-                to="/faq"
+                to="/myRecipes"
                 className="text-base font-medium text-slate-600 hover:underline hover:text-blue-600 transition duration-200"
               >
-                FAQ
+                My Recipe
               </NavLink>
             </>
           )}
@@ -82,7 +82,7 @@ const Navbar = () => {
               }`
             }
           >
-            AddUser
+            AddRecipe
           </NavLink>
         </div>
 

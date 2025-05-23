@@ -1,74 +1,108 @@
-import { useEffect, useState, useContext } from "react";
-import { AuthContext } from "../../main";
-import { FaClock, FaHeart, FaPen, FaTrash } from "react-icons/fa";
+import { useContext, useEffect, useState } from "react";
+import {
+  FaHeart,
+  FaTrash,
+  FaEdit,
+  FaClock,
+  FaPen,
+  FaTimes,
+  FaImage,
+  FaCheckCircle,
+  FaTimesCircle,
+} from "react-icons/fa";
+import {
+  FaBookOpen,
+  FaGlobeAsia,
+  FaListUl,
+  FaPlusCircle,
+  FaTags,
+  FaUtensils,
+} from "react-icons/fa";
 
-const MyRecipes = () => {
+import { AuthContext } from "../../main";
+import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+
+const MyRecipe = () => {
   const { user } = useContext(AuthContext);
   const [recipes, setRecipes] = useState([]);
-  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [editRecipe, setEditRecipe] = useState(null);
 
   useEffect(() => {
-    fetch(`https://assignment10-server-seven-delta.vercel.app/myRecipes?email=${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setRecipes(data));
+    if (user?.email) {
+      fetch(`http://localhost:3000/myRecipes?email=${user.email}`)
+        .then((res) => res.json())
+        .then((data) => setRecipes(data));
+    }
   }, [user]);
 
-  const handleDelete = async (id) => {
-    const confirm = window.confirm(
-      "Are you sure you want to delete this recipe?"
-    );
-    if (!confirm) return;
+const handleDelete = async (id) => {
+  const result = await Swal.fire({
+    title: "Are you sure you want to delete this recipe?",
+    showDenyButton: true,
+    showCancelButton: true,
+    confirmButtonText: "Yes, delete it!",
+    denyButtonText: `No, keep it`,
+  });
 
-    const res = await fetch(`https://assignment10-server-seven-delta.vercel.app/recipes/${id}`, {
-      method: "DELETE",
-    });
-    const result = await res.json();
+  if (result.isConfirmed) {
+    try {
+      const res = await fetch(`http://localhost:3000/recipes/${id}`, {
+        method: "DELETE",
+      });
 
-    if (result.deletedCount > 0) {
-      toast.success("Recipe deleted");
-      setRecipes((prev) => prev.filter((r) => r._id !== id));
+      if (res.ok) {
+        toast.success("Recipe deleted successfully");
+        setRecipes((prev) => prev.filter((r) => r._id !== id));
+      } else {
+        toast.error("Failed to delete the recipe.");
+      }
+    } catch (err) {
+      toast.error("An error occurred while deleting.");
+      console.error(err);
     }
-  };
+  } else if (result.isDenied) {
+    Swal.fire("Changes are not saved", "", "info");
+  }
+};
 
-  const handleUpdate = async (e) => {
+  const handleUpdateSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const updatedData = {
-      image: form.image.value,
       title: form.title.value,
       ingredients: form.ingredients.value,
       instructions: form.instructions.value,
       cuisine: form.cuisine.value,
       prepTime: form.prepTime.value,
-      categories: form.categories.value.split(",").map((cat) => cat.trim()),
+      categories: form.categories.value.split(",").map((s) => s.trim()),
+      image: form.image.value,
     };
 
-    const res = await fetch(
-      `https://assignment10-server-seven-delta.vercel.app/recipes/${selectedRecipe._id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedData),
-      }
-    );
+    const res = await fetch(`http://localhost:3000/recipes/${editRecipe._id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
 
     if (res.ok) {
-      toast.success("Recipe updated");
-      setSelectedRecipe(null); // Close modal
-      // Refresh list
-      fetch(`https://assignment10-server-seven-delta.vercel.app/myRecipes?email=${user?.email}`)
-        .then((res) => res.json())
-        .then((data) => setRecipes(data));
+      toast.success("Recipe updated successfully");
+      setRecipes(
+        recipes.map((r) =>
+          r._id === editRecipe._id ? { ...r, ...updatedData } : r
+        )
+      );
+      setEditRecipe(null);
     }
   };
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h2 className="text-3xl font-bold text-center mb-8 text-primary">
-        My Recipes
-      </h2>
+      <h2 className="text-3xl font-bold mb-8 text-primary">My Recipes</h2>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
           <div
             key={recipe._id}
@@ -139,7 +173,7 @@ const MyRecipes = () => {
               {/* Action Buttons */}
               <div className="flex justify-between items-center pt-4 border-t mt-4">
                 <button
-                  onClick={() => setSelectedRecipe(recipe)}
+                  onClick={() => setEditRecipe(recipe)}
                   className="flex items-center gap-1 text-sm text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md shadow"
                 >
                   <FaPen /> Update
@@ -157,135 +191,165 @@ const MyRecipes = () => {
       </div>
 
       {/* Update Modal */}
-      {selectedRecipe && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-xl p-6 max-w-lg w-full">
-            <h3 className="text-xl font-bold mb-4">Update Recipe</h3>
-        <form
-          onSubmit={handleUpdate}
-          className="w-full grid grid-cols-2 gap-5 "
-        >
-          {/* Image URL */}
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaImage /> Image URL
-            </label>
-            <input
-              type="text"
-              name="image"
-              placeholder="https://example.com/image.jpg"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
-            />
-          </div>
-
-          {/* Title */}
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaUtensils /> Recipe Title
-            </label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Creamy Alfredo Pasta"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
-            />
-          </div>
-
-          {/* Ingredients */}
-          <div className="space-y-2 col-span-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaListUl /> Ingredients
-            </label>
-            <textarea
-              name="ingredients"
-              placeholder="• Pasta\n• Cream\n• Garlic"
-              rows={4}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition resize-none"
-            />
-          </div>
-
-          {/* Instructions */}
-          <div className="space-y-2 col-span-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaBookOpen /> Instructions
-            </label>
-            <textarea
-              name="instructions"
-              placeholder="1. Boil pasta...\n2. Make the sauce..."
-              rows={5}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition resize-none"
-            />
-          </div>
-
-          {/* Cuisine Type */}
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaGlobeAsia /> Cuisine Type
-            </label>
-            <select
-              name="cuisine"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+      {editRecipe && (
+<div className="fixed inset-0 z-50 bg-white/70 backdrop-blur-sm flex items-center justify-center px-4 h-screen ">
+          {/* Overlay animation */}
+<div className="animate-fadeInUp relative w-full max-w-3xl max-h-[95vh] overflow-y-auto my-10">
+            {/* Close Button */}
+            {/* <button
+              onClick={() => setEditRecipe(null)}
+              className="absolute -top-4 -right-4 bg-white text-red-500 hover:text-red-700 shadow-md p-2 rounded-full transition"
+              aria-label="Close Modal"
             >
-              <option value="">Select Cuisine</option>
-              <option value="Italian">Italian</option>
-              <option value="Mexican">Mexican</option>
-              <option value="Indian">Indian</option>
-              <option value="Chinese">Chinese</option>
-              <option value="Others">Others</option>
-            </select>
-          </div>
+              <FaTimes size={20} />
+            </button> */}
 
-          {/* Preparation Time */}
-          <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaClock /> Preparation Time (mins)
-            </label>
-            <input
-              type="number"
-              name="prepTime"
-              placeholder="45"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
-            />
-          </div>
-
-          {/* Categories */}
-          <div className="space-y-2 col-span-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
-              <FaTags /> Categories
-            </label>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map(
-                (cat) => (
-                  <label key={cat} className="flex items-center gap-2">
-                    <input
-                      type="checkbox"
-                      name="categories"
-                      value={cat}
-                      className="h-5 w-5 text-primary border-gray-300 rounded focus:ring-2 focus:ring-primary transition"
-                    />
-                    <span className="text-gray-700">{cat}</span>
+            {/* Modal Content */}
+            <div className="bg-white dark:bg-base-100 rounded-3xl shadow-xl p-10 border border-neutral/20 transition-all duration-300 my-10">
+              <h2 className="text-3xl font-semibold mb-6 text-center text-black ">
+                ✨ Update Recipe
+              </h2>
+              <form
+                className="w-full grid grid-cols-2 gap-5  "
+                onSubmit={handleUpdateSubmit}
+              >
+                {/* Image URL */}
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                    <FaImage /> Image URL
                   </label>
-                )
-              )}
-            </div>
-          </div>
+                  <input
+                    type="text"
+                    name="image"
+                    placeholder="https://example.com/image.jpg"
+                    defaultValue={editRecipe.image}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+                  />
+                </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="w-full md:col-span-2 py-4 px-6 text-lg font-semibold text-white 
-             rounded-full bg-gradient-to-r from-lime-500 via-emerald-500 to-green-600 
-              hover:from-lime-600 hover:to-green-700
-             flex items-center justify-center gap-3
-             
-             hover:shadow-xl hover:scale-[1.02]
-             transition-all duration-300 ease-in-out 
-             focus:outline-none focus:ring-4 focus:ring-lime-200 shadow-lg"
-          >
-            <FaPlusCircle className="text-2xl" />
-            Add Recipe
-          </button>
-        </form>
+                {/* Title */}
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                    <FaUtensils /> Recipe Title
+                  </label>
+                  <input
+                    type="text"
+                    name="title"
+                    placeholder="Creamy Alfredo Pasta"
+                    defaultValue={editRecipe.title}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+                  />
+                </div>
+
+                {/* Ingredients */}
+                <div className="space-y-2 col-span-2">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                    <FaListUl /> Ingredients
+                  </label>
+                  <textarea
+                    name="ingredients"
+                    defaultValue={editRecipe.ingredients}
+                    placeholder="• Pasta\n• Cream\n• Garlic"
+                    rows={4}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition resize-none"
+                  />
+                </div>
+
+                {/* Instructions */}
+                <div className="space-y-2 col-span-2">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                    <FaBookOpen /> Instructions
+                  </label>
+                  <textarea
+                    name="instructions"
+                    defaultValue={editRecipe.instructions}
+                    placeholder="1. Boil pasta...\n2. Make the sauce..."
+                    rows={5}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition resize-none"
+                  />
+                </div>
+
+                {/* Cuisine Type */}
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                    <FaGlobeAsia /> Cuisine Type
+                  </label>
+                  <select
+                    name="cuisine"
+                    defaultValue={editRecipe.cuisine}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+                  >
+                    <option value="">Select Cuisine</option>
+                    <option value="Italian">Italian</option>
+                    <option value="Mexican">Mexican</option>
+                    <option value="Indian">Indian</option>
+                    <option value="Chinese">Chinese</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+
+                {/* Preparation Time */}
+                <div className="space-y-2">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                    <FaClock /> Preparation Time (mins)
+                  </label>
+                  <input
+                    type="number"
+                    name="prepTime"
+                    placeholder="45"
+                    defaultValue={editRecipe.prepTime}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition"
+                  />
+                </div>
+
+                {/* Categories */}
+                <div className="space-y-2 col-span-2">
+                  <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+                    <FaTags /> Categories
+                  </label>
+                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                    {["Breakfast", "Lunch", "Dinner", "Dessert", "Vegan"].map(
+                      (cat) => (
+                        <label key={cat} className="flex items-center gap-2">
+                          <input
+                            type="checkbox"
+                            name="categories"
+                            value={cat}
+                            defaultChecked={editRecipe.categories?.includes(
+                              cat
+                            )}
+                            className="h-5 w-5 text-primary border-gray-300 rounded focus:ring-2 focus:ring-primary transition"
+                          />
+                          <span className="text-gray-700">{cat}</span>
+                        </label>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="col-span-2 flex justify-end gap-4 mt-6">
+                  {/* Cancel Button */}
+                  <button
+                    type="button"
+                    onClick={() => setEditRecipe(null)}
+                    className="inline-flex items-center gap-2 justify-center px-6 py-2 rounded-full border border-red-400 text-red-500 hover:bg-red-100 hover:text-red-600 transition-all duration-200 shadow-sm"
+                  >
+                    <FaTimesCircle className="text-lg" />
+                    Cancel
+                  </button>
+
+                  {/* Update Button */}
+                  <button
+                    type="submit"
+                    className="inline-flex items-center gap-2 justify-center px-6 py-2 rounded-full text-white font-semibold bg-gradient-to-r from-lime-500 via-emerald-500 to-green-600 hover:from-lime-600 hover:to-green-700 transition-all duration-200 shadow-md"
+                  >
+                    <FaCheckCircle className="text-lg" />
+                    Update Recipe
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       )}
@@ -293,4 +357,4 @@ const MyRecipes = () => {
   );
 };
 
-export default MyRecipes;
+export default MyRecipe;
