@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebookF, FaTwitter, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaUtensils, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router";
 
 
@@ -10,7 +10,9 @@ const Footer = () => {
     
     {/* Brand Section */}
     <div>
-          <Link to="/" className="text-3xl font-bold text-green-400">
+          <Link to="/" className="text-3xl font-bold text-green-400 flex justify-center items-center">
+                <FaUtensils className="text-3xl text-slate-500" />
+          
             Plate<span className="text-purple-400">Ful</span>
           </Link>
       

@@ -5,7 +5,7 @@ import { RxAvatar } from "react-icons/rx";
 import { FiLogOut } from "react-icons/fi";
 import { ThemeContext } from "../../Context/ThemeContext";
 import { IoMoon } from "react-icons/io5";
-import { FaSun } from "react-icons/fa";
+import { FaSun, FaUtensils } from "react-icons/fa";
 
 const Navbar = () => {
   const { signOutUser, user } = useContext(AuthContext);
@@ -22,7 +22,9 @@ const Navbar = () => {
 <div className="w-full bg-base-300 shadow-sm">
   <div className="w-10/12 mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
     {/* Logo */}
-    <Link to="/" className="text-3xl font-bold text-green-400">
+    <Link to="/" className="text-3xl font-bold text-green-400 flex justify-center items-center
+    ">
+      <FaUtensils className="text-3xl text-slate-500" />
       Plate<span className="text-purple-400">Ful</span>
     </Link>
 
