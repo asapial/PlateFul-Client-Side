@@ -3,7 +3,7 @@ import { useLoaderData, useNavigate } from "react-router";
 
 const RecipeDetails = () => {
   const data=useLoaderData();
-  console.log(data);
+
   const { image, title, cuisine, prepTime, likes, ingredients, instructions, categories } = data;
   const navigate = useNavigate();
   

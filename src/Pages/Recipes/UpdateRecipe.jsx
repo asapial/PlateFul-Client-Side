@@ -12,7 +12,7 @@ const MyRecipes = () => {
       .then((res) => res.json())
       .then((data) => {
         setRecipes(data);
-        console.log(data);
+
       });
   }, [user]);
 

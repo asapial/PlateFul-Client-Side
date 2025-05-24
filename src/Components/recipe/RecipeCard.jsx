@@ -22,7 +22,7 @@ const RecipeCard = ({ recipe }) => {
     )
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+
         // Optionally: trigger a state update here to re-render likes
       });
   };

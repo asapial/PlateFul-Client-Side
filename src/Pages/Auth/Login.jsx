@@ -81,11 +81,11 @@ const Login = () => {
     <div className="min-h-screen bg-gradient-to-br from-base-300 to-base-100 flex flex-row items-center justify-center px-4 ">
       <title>Login | PlateFul</title>
 
-<div className="loginContainer max-w-2/3 shadow-2xl rounded-3xl border border-accent  hover:shadow-3xl transition-shadow duration-300 flex flex-col md:flex-row bg-base-300 ">
-        <div className=" w-3/5  flex items-center justify-center ">
+<div className="loginContainer md:max-w-2/3 shadow-2xl rounded-3xl border border-accent  hover:shadow-3xl transition-shadow duration-300 flex flex-col md:flex-row bg-base-300 ">
+        <div className="w-full  md:w-3/5  flex items-center justify-center ">
           <Lottie animationData={loginAnimation}  className=" rounded-3xl"/>
         </div>
-        <div className="p-5 w-2/5">
+        <div className="p-5 w-full md:w-2/5">
           <h2 className="text-3xl font-bold text-center text-accent-800 my-4">
             Login
           </h2>

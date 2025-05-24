@@ -79,11 +79,11 @@ const Register = () => {
   return (
     <div className="py-10 bg-gradient-to-br from-base-100 to-base-300 flex items-center justify-center px-4">
       <title>Register | PlateFul</title>
-      <div className="registerContainer max-w-2/3 shadow-2xl rounded-3xl border border-accent  hover:shadow-3xl transition-shadow duration-300 flex flex-col md:flex-row gap-5 bg-base-300 p-5">
-        <div className=" w-2/5  flex items-center justify-center mx-10 ">
+      <div className="registerContainer md:max-w-2/3 shadow-2xl rounded-3xl border border-accent  hover:shadow-3xl transition-shadow duration-300 flex flex-col md:flex-row gap-5 bg-base-300 p-5">
+        <div className="w-full md:w-2/5  flex items-center justify-center mx-10 ">
           <Lottie animationData={registerAnimation}  className=""/>
         </div>
-        <div className=" w-3/5 p-5">
+        <div className="w-full md:w-3/5 p-5">
           <h2 className="text-3xl font-bold text-center text-accent-800 my-5">
             Create an Account
           </h2>

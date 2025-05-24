@@ -43,7 +43,7 @@ const AddRecipe = () => {
       );
 
       const data = await res.json();
-      console.log("Response:", data);
+
 
       if (data.acknowledged) {
         Swal.fire("✅ Recipe added successfully!");

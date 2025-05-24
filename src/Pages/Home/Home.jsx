@@ -7,7 +7,7 @@ import { Fade } from 'react-awesome-reveal';
 
 const Home = () => {
     const topRecipeDataPromise= fetch('https://assignment10-server-seven-delta.vercel.app/topRecipe').then(res=>res.json())
-    console.log(topRecipeDataPromise);
+
     return (
         <div className=' bg-base-300'>
             <Slider></Slider>
