@@ -35,7 +35,7 @@ const RecipeDetails = () => {
 
           <div className="flex items-center gap-3 text-red-500 text-lg">
             <FaHeart />
-            <span className="font-semibold">{likes || 0} Likes</span>
+            <span className="font-semibold">{likes || 0} people interested in this recipe</span>
           </div>
 
           <div className="flex items-center gap-3 text-gray-500 text-sm">
