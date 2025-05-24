@@ -33,7 +33,7 @@ const MyProfile = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 to-slate-300 flex items-center justify-center px-4">
-    <title>MyProfile | BoxaBly</title>
+    <title>MyProfile | PlateFul</title>
 
       <div className="bg-white shadow-2xl rounded-3xl p-8 max-w-md w-full space-y-6">
         <h2 className="text-3xl font-bold text-center text-gray-800">

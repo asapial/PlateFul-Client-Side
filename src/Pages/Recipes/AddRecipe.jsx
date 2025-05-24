@@ -59,6 +59,8 @@ const AddRecipe = () => {
   };
   return (
     <div className="my-20   w-11/12 mx-auto">
+        <title>AddRecipe | PlateFul</title>
+
       <div className="formContainer bg-white p-10 rounded-3xl shadow-2xl space-y-8 border border-gray-200 w-full">
         <h2 className="text-4xl font-extrabold text-center text-primary flex items-center justify-center gap-3">
           <FaUtensils /> Add a New Recipe

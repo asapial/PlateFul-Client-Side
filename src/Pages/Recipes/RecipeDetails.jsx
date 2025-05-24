@@ -10,6 +10,8 @@ const RecipeDetails = () => {
 
   return (
  <div className="max-w-7xl mx-auto px-4 py-12">
+     <title>RecipeDetails | PlateFul</title>
+
       <button
         onClick={() => navigate(-1)}
         className="mb-6 inline-flex items-center gap-2 text-blue-600 font-semibold hover:underline"

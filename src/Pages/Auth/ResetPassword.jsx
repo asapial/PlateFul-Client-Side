@@ -32,6 +32,8 @@ const ResetPassword = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-base-100 to-base-300 flex items-center justify-center px-4">
+        <title>Reset | PlateFul</title>
+
       <div className="bg-base-300 shadow-xl rounded-3xl p-8 max-w-md w-full space-y-6">
         <h2 className="text-3xl font-bold text-center text-accent-800">
           Forgot Password

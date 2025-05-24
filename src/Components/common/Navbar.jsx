@@ -98,7 +98,7 @@ const Navbar = () => {
             to="/myRecipes"
             className="text-base font-medium text-primary hover:underline hover:text-info transition duration-200"
           >
-            My Recipe
+            My Recipes
           </NavLink>
     </div>
 

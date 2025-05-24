@@ -111,6 +111,8 @@ const handleUpdateSubmit = async (e) => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
+        <title>MyRecipes | PlateFul</title>
+
       <h2 className="text-3xl font-bold mb-8 text-primary text-center">My Recipes</h2>
 
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
