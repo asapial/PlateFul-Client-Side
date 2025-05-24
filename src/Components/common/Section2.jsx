@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
-import { FaPlayCircle } from 'react-icons/fa';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import Lottie from 'lottie-react';
+import React, { useEffect } from "react";
+import { FaPlayCircle } from "react-icons/fa";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Lottie from "lottie-react";
 import cooking from "/src/assets/cooking.json";
+import { Fade } from "react-awesome-reveal";
 
 const Section2 = () => {
   useEffect(() => {
@@ -16,25 +17,31 @@ const Section2 = () => {
   return (
     <section className="bg-base-300 py-16 w-10/12 mx-auto">
       <div className="justify-around mx-auto flex flex-col md:flex-row items-center gap-10">
-
         {/* Image */}
-        <div 
-          className="md:w-1/2"
-          data-aos="fade-right"
-        >
-            <Lottie animationData={cooking}  />;
+        <div className="md:w-1/2" data-aos="fade-right">
+          <Lottie animationData={cooking} />;
         </div>
 
         {/* Content */}
-        <div 
-          className="md:w-1/2"
-          data-aos="fade-left"
-        >
+        <div className="md:w-1/2" data-aos="fade-left">
           <h2 className="text-4xl font-light text-accent mb-4">
-            All About <span className="font-bold text-green-600">Plateful</span>
+            <Fade
+              delay={1000} // Wait 200ms before starting
+              duration={2000} // Animation lasts 1 second
+              triggerOnce // Only animate once
+              fraction={0.5} // Start animation when element is 50% visible
+            >
+            <>
+                            All About{" "}<span className="font-bold text-green-600">Plateful</span>
+            </>
+
+            </Fade>
           </h2>
           <p className="text-accent leading-relaxed mb-6 text-xl">
-            Plateful is your ultimate culinary companion — discover, cook, and share mouthwatering recipes from around the world. Whether you're a home cook or a food enthusiast, Plateful brings flavor to your fingertips. One platform. Infinite inspiration.
+            Plateful is your ultimate culinary companion — discover, cook, and
+            share mouthwatering recipes from around the world. Whether you're a
+            home cook or a food enthusiast, Plateful brings flavor to your
+            fingertips. One platform. Infinite inspiration.
           </p>
 
           {/* Buttons */}
@@ -48,7 +55,6 @@ const Section2 = () => {
             </button>
           </div>
         </div>
-
       </div>
     </section>
   );
