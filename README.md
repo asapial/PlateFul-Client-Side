@@ -2,17 +2,22 @@
 
 Live Site URL: [https://plateful-21a3d.web.app/](https://plateful-21a3d.web.app/)
 
-PlateFul is a dynamic and visually engaging platform built for managing and showcasing tasks or freelance gigs. Whether you're a task owner or a bidder, PlateFul streamlines the experience with a clean UI, interactive animations, and powerful features powered by modern frontend and backend technologies.
+PlateFul is a user-friendly Recipe Book App where food lovers can manage their own recipes, discover recipes from others, add favorites to a wishlist, and like recipes. The app features a dynamic top recipes section based on likes, providing a simple and engaging platform for food enthusiasts.
 
 ---
 
 ## 🚀 Features
 
-- ✅ **Task Marketplace** – Post, update, and delete tasks with budget, deadlines, skill level, and categories.
-- 👤 **User Authentication** – Firebase authentication for secure user login, registration, and session management.
-- 🧠 **Bidding System** – Logged-in users can bid on tasks, with bid counts tracked per user in real time.
-- 🎨 **Modern UI/UX** – Responsive and aesthetic design using Tailwind CSS, AOS animations, and Lottie animations.
-- 🔥 **Live Notifications** – Real-time feedback using `react-toastify`, `sweetalert2`, and dynamic UI updates.
+- 📖 **Recipe Management** – Add, update, and delete your own recipes with images, ingredients, instructions, cuisine type, and categories.
+- 🌟 **Top Recipes** – See the most popular recipes based on likes, updated in real time.
+- ❤️ **Like & Wishlist** – Like recipes (except your own) and add them to your wishlist for easy access.
+- 👤 **Authentication** – Secure login, registration, and Google social login using Firebase.
+- 🔒 **Private Routes** – Add Recipe and My Recipes pages are protected and only accessible to logged-in users.
+- 🎨 **Modern UI/UX** – Responsive design for mobile, tablet, and desktop. Includes Lottie animations, React Awesome Reveal, and dark/light theme toggle.
+- 🔔 **Live Notifications** – User feedback with `react-toastify`, `sweetalert2`, and tooltips (no default alerts).
+- 🔎 **Filter & Search** – Filter recipes by cuisine type and search for your favorites.
+- 🛡️ **Environment Variables** – Firebase and MongoDB credentials are hidden using environment variables.
+- 🖼️ **Custom 404 Page** – Food-themed not found page with unique design.
 
 ---
 
@@ -27,3 +32,39 @@ PlateFul is a dynamic and visually engaging platform built for managing and show
 - **Backend**: Express.js, MongoDB (Node server hosted separately)
 
 ---
+
+## 📦 Installation
+
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/asapial/PlateFul-Client-Side.git
+   cd PlateFul-Client-Side
+   ```
+
+2. **Install dependencies:**
+   ```sh
+   npm install
+   ```
+
+3. **Set up environment variables:**
+   - Copy `.env.example` to `.env.local` and fill in your Firebase and backend API credentials.
+
+4. **Start the development server:**
+   ```sh
+   npm run dev
+   ```
+
+---
+
+
+
+## 🤝 Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+
+---
+
+## 📄 License
+
+All content, including recipes, images, and branding, is the intellectual property of PlateFul unless otherwise stated. Unauthorized use or duplication without explicit permission is strictly prohibited.
+
