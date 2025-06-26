@@ -22,6 +22,8 @@ import CopyRightNotice from "./Pages/Footer/CopyRightNotice.jsx";
 import ContactInformation from "./Pages/Footer/ContactInformation.jsx";
 import HomeLayout from "./Layout/HomeLayout.jsx";
 import DashboardLayout from "./Layout/DashboardLayout.jsx";
+import AboutUs from "./Pages/Others/AboutUs.jsx";
+import Support from "./Pages/Others/Support.jsx";
 export const AuthContext = createContext(null);
 
 const router = createBrowserRouter([
@@ -68,6 +70,14 @@ const router = createBrowserRouter([
       {
         path: "contact",
         Component: ContactInformation,
+      },
+      {
+        path: "aboutUs",
+        Component: AboutUs,
+      },
+      {
+        path: "support",
+        Component: Support,
       },
     ],
   },

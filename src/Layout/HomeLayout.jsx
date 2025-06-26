@@ -10,7 +10,6 @@ const HomeLayout = () => {
             <div className="navBarContainer flex justify-center shadow-sm">
                 <Navbar></Navbar>
             </div>
-            <h1>Abu Syeed Abdullah</h1>
             <Outlet></Outlet>
             <div className="footerContainer flex justify-center">
                 <Footer></Footer>
