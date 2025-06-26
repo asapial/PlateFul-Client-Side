@@ -25,6 +25,7 @@ import DashboardLayout from "./Layout/DashboardLayout.jsx";
 import AboutUs from "./Pages/Others/AboutUs.jsx";
 import Support from "./Pages/Others/Support.jsx";
 import BlogDetails from "./Pages/Recipes/BlogDetails.jsx";
+import DashBoardOverview from "./Pages/Recipes/DashBoardOverview.jsx";
 export const AuthContext = createContext(null);
 
 const router = createBrowserRouter([
@@ -92,6 +93,15 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        Component:DashBoardOverview,
+        // element: (
+        //   <PrivateRoute>
+        //     <MyRecipes></MyRecipes>
+        //   </PrivateRoute>
+        // ),
+      },
+      {
+        path: "myRecipe",
         element: (
           <PrivateRoute>
             <MyRecipes></MyRecipes>

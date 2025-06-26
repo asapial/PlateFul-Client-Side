@@ -38,7 +38,7 @@ const DashBoardLink = () => {
               </li>
             </Link>
 
-            <Link to={"/dashboard"}>
+            <Link to={"/dashboard/myRecipe"}>
               <li className="flex items-center gap-3 text-lg  hover:text-purple-600 cursor-pointer transition">
                 <FaBookOpen className="text-xl" />
                 My Recipe

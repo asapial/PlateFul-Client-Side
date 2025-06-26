@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { FiRefreshCcw } from "react-icons/fi";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../main";
+import { SuccessToast } from "../../utilities/ToastMaker";
 
 const MyProfile = () => {
 
@@ -15,16 +16,7 @@ const MyProfile = () => {
             const photo=e.target.photo.value;
             updateUser(name,photo).then(()=>{
                 navigate('/');
-                toast('🧑‍💻 Profile updated successfully!', {
-                  position: "top-right",
-                  autoClose: 5000,
-                  hideProgressBar: false,
-                  closeOnClick: false,
-                  pauseOnHover: true,
-                  draggable: true,
-                  progress: undefined,
-                  theme: "light",
-                  });
+                SuccessToast('🧑‍💻 Profile updated successfully!')
             }).catch(()=>{
                 alert("Error")
             })

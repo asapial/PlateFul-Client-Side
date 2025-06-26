@@ -12,6 +12,7 @@ import {
 import { AuthContext } from "../../main";
 import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
+import { ErrorToast, SuccessToast } from "../../utilities/ToastMaker";
 
 const AddRecipe = () => {
 
@@ -46,11 +47,11 @@ const AddRecipe = () => {
 
 
       if (data.acknowledged) {
-        Swal.fire("✅ Recipe added successfully!");
+        SuccessToast('Recipe added successfully!');
         form.reset();
         navigate("/myRecipes");
       } else {
-        Swal.fire("❌ Failed to add recipe.");
+        ErrorToast('Failed to add recipe');
       }
     } catch (error) {
       console.error("Error submitting recipe:", error);
@@ -61,7 +62,7 @@ const AddRecipe = () => {
     <div className="my-20   w-11/12 mx-auto">
         <title>AddRecipe | PlateFul</title>
 
-      <div className="formContainer bg-white p-10 rounded-3xl shadow-2xl space-y-8 border border-gray-200 w-full">
+      <div className="formContainer bg-base-100 p-10 rounded-3xl shadow-2xl space-y-8 border border-gray-200 w-full">
         <h2 className="text-4xl font-extrabold text-center text-primary flex items-center justify-center gap-3">
           <FaUtensils /> Add a New Recipe
         </h2>
@@ -71,7 +72,7 @@ const AddRecipe = () => {
         >
           {/* Title */}
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+            <label className="flex items-center gap-2 text-lg font-semibold text-accent">
               <FaUtensils /> Recipe Title
             </label>
             <input
@@ -84,7 +85,7 @@ const AddRecipe = () => {
 
           {/* Image URL */}
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+            <label className="flex items-center gap-2 text-lg font-semibold text-accent">
               <FaImage /> Image URL
             </label>
             <input
@@ -97,7 +98,7 @@ const AddRecipe = () => {
 
           {/* Ingredients */}
           <div className="space-y-2 col-span-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+            <label className="flex items-center gap-2 text-lg font-semibold text-accent">
               <FaListUl /> Ingredients
             </label>
             <textarea
@@ -110,7 +111,7 @@ const AddRecipe = () => {
 
           {/* Instructions */}
           <div className="space-y-2 col-span-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+            <label className="flex items-center gap-2 text-lg font-semibold text-accent">
               <FaBookOpen /> Instructions
             </label>
             <textarea
@@ -123,7 +124,7 @@ const AddRecipe = () => {
 
           {/* Cuisine Type */}
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+            <label className="flex items-center gap-2 text-lg font-semibold text-accent">
               <FaGlobeAsia /> Cuisine Type
             </label>
             <select
@@ -141,7 +142,7 @@ const AddRecipe = () => {
 
           {/* Preparation Time */}
           <div className="space-y-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+            <label className="flex items-center gap-2 text-lg font-semibold text-accent">
               <FaClock /> Preparation Time (mins)
             </label>
             <input
@@ -154,7 +155,7 @@ const AddRecipe = () => {
 
           {/* Categories */}
           <div className="space-y-2 col-span-2">
-            <label className="flex items-center gap-2 text-lg font-semibold text-gray-700">
+            <label className="flex items-center gap-2 text-lg font-semibold text-accent">
               <FaTags /> Categories
             </label>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -167,7 +168,7 @@ const AddRecipe = () => {
                       value={cat}
                       className="h-5 w-5 text-primary border-gray-300 rounded focus:ring-2 focus:ring-primary transition"
                     />
-                    <span className="text-gray-700">{cat}</span>
+                    <span className="text-accent">{cat}</span>
                   </label>
                 )
               )}

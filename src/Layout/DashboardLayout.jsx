@@ -15,20 +15,22 @@ const DashboardLayout = () => {
       {open ? (
         <button
           onClick={() => setOpen(!open)}
-          className=" absolute top-7  left-5 hidden md:block"
+          className=" top-7  left-5 hidden md:block z-50 fixed"
         >
           <FaX></FaX>
         </button>
       ) : (
         <button
           onClick={() => setOpen(!open)}
-          className=" absolute top-7  left-5 hidden md:block"
+          className="  top-7  left-5 hidden md:block  z-50 fixed"
         >
           <RiMenuFold4Fill />
         </button>
       )}
 
-      <Navbar />
+            <div className="navBarContainer flex justify-center shadow-sm mb-18">
+                <Navbar></Navbar>
+            </div>
       <div className="flex flex-1">
         {/* Sidebar */}
         {open && (
