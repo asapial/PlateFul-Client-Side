@@ -27,6 +27,7 @@ const Navbar = () => {
       <FaUtensils className="text-3xl text-slate-500" />
       Plate<span className="text-purple-400">Ful</span>
     </Link>
+     <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
     {/* Nav Links */}
     <div className="flex flex-wrap justify-center gap-5 items-center">
