@@ -1,7 +1,7 @@
 import React from "react";
 import { FaUsers, FaRegLightbulb, FaRegHeart } from "react-icons/fa";
-import { MdOutlineRestaurantMenu } from "react-icons/md";
 import PlateFulNamePlate from "../../Atoms/PlateFulNamePlate";
+
 
 const AboutUs = () => {
   return (

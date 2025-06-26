@@ -6,10 +6,16 @@ import {
   FaSignOutAlt,
 } from "react-icons/fa";
 import { AuthContext } from "../../main";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const DashBoardLink = () => {
-  const { user } = useContext(AuthContext);
+  const { user,signOutUser } = useContext(AuthContext);
+  const navigate=useNavigate();
+    const handleSignOut = () => {
+    signOutUser().then(() => {
+      navigate("/");
+    });
+  };
 
   return (
     <div className="w-full h-full p-5 bg-base-200">
@@ -53,10 +59,11 @@ const DashBoardLink = () => {
           </ul>
         </nav>
         {/* Logout */}
-        <button className="mt-4 flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition w-full justify-center">
+        <button onClick={handleSignOut} className="mt-4 flex items-center gap-2 px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition w-full justify-center">
           <FaSignOutAlt className="text-lg" />
           Log Out
         </button>
+
       </div>
     </div>
   );

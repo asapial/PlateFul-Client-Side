@@ -38,7 +38,7 @@ const DashboardLayout = () => {
             <div className=" h-full ">
               <DashBoardLink />
             </div>
-            {/* <DashBoardLinkDrawer></DashBoardLinkDrawer> */}
+            <DashBoardLinkDrawer></DashBoardLinkDrawer>
           </aside>
         )}
 

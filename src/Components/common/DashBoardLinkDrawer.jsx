@@ -1,34 +1,55 @@
-import React from "react";
+import React from 'react';
+import DashBoardLink from './DashBoardLink';
+import { IoMdClose } from 'react-icons/io'; // React Icons close icon
 
-const DashBoardLinkDrawer = () => {
+const drawerStyle = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '80vw',
+  maxWidth: 320,
+  height: '100vh',
+  background: '#fff',
+  boxShadow: '2px 0 8px rgba(0,0,0,0.15)',
+  zIndex: 2000,
+  transition: 'transform 0.3s ease',
+  display: 'flex',
+  flexDirection: 'column',
+  padding: '1rem',
+};
+
+const closeBtnStyle = {
+  alignSelf: 'flex-end',
+  background: 'none',
+  border: 'none',
+  fontSize: 28,
+  cursor: 'pointer',
+  marginBottom: '1rem',
+};
+
+const overlayStyle = {
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  width: '100vw',
+  height: '100vh',
+  background: 'rgba(0,0,0,0.3)',
+  zIndex: 1999,
+};
+
+const DashBoardLinkDrawer = ({ open, onClose }) => {
+  // if (!open) return null;
+
   return (
-    <div>
-      <div className="drawer">
-        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content">
-          {/* Page content here */}
-          <label htmlFor="my-drawer" className="btn btn-primary drawer-button">
-            Open drawerrr
-          </label>
-        </div>
-        <div className="drawer-side">
-          <label
-            htmlFor="my-drawer"
-            aria-label="close sidebar"
-            className="drawer-overlay"
-          ></label>
-          <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
-            {/* Sidebar content here */}
-            <li>
-              <a>Sidebar Item 1</a>
-            </li>
-            <li>
-              <a>Sidebar Item 2</a>
-            </li>
-          </ul>
-        </div>
+    <>
+      <div style={overlayStyle} onClick={onClose} />
+      <div style={drawerStyle}>
+        <button style={closeBtnStyle} onClick={onClose} aria-label="Close drawer">
+          <IoMdClose />
+        </button>
+        <DashBoardLink />
       </div>
-    </div>
+    </>
   );
 };
 
