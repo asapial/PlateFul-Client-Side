@@ -38,6 +38,18 @@ const router = createBrowserRouter([
         element: <AllRecipes></AllRecipes>,
       },
       {
+        path: "recipeDetails/:id",
+        element: (
+          <PrivateRoute>
+            <RecipeDetails></RecipeDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(
+            `https://assignment10-server-seven-delta.vercel.app/recipeDetails/${params.id}`
+          ),
+      },
+      {
         path: "login",
         Component: Login,
       },
@@ -50,10 +62,6 @@ const router = createBrowserRouter([
         Component: ResetPassword,
       },
       {
-        path: "myProfile",
-        Component: MyProfile,
-      },
-      {
         path: "copyRightInformation",
         Component: CopyRightNotice,
       },
@@ -64,11 +72,11 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path:"dashboard",
-    Component:DashboardLayout,
-    children:[
+    path: "dashboard",
+    Component: DashboardLayout,
+    children: [
       {
-        index:true,
+        index: true,
         element: (
           <PrivateRoute>
             <MyRecipes></MyRecipes>
@@ -84,19 +92,10 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "recipeDetails/:id",
-        element: (
-          <PrivateRoute>
-            <RecipeDetails></RecipeDetails>
-          </PrivateRoute>
-        ),
-        loader: ({ params }) =>
-          fetch(
-            `https://assignment10-server-seven-delta.vercel.app/recipeDetails/${params.id}`
-          ),
+        path: "myProfile",
+        Component: MyProfile,
       },
-
-    ]
+    ],
   },
   {
     path: "*",
