@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
   
     <div className="w-full fixed z-50  bg-base-300/60 shadow-lg backdrop-blur-xl backdrop-saturate-150">
-      <div className="w-10/12 mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div className="w-full max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
         {/* Logo */}
         <Link
           to="/"

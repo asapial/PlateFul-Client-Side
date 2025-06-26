@@ -5,7 +5,7 @@ import PlateFulNamePlate from "../../Atoms/PlateFulNamePlate";
 
 const Support = () => {
   return (
-    <div className="max-w-7xl min-h-[85vh] flex flex-col items-center justify-center bg-base-100 px-4 py-16">
+    <div className="max-w-7xl min-h-[85vh] flex flex-col items-center justify-center bg-base-100 px-4 py-16 mx-auto">
       <div className="max-w-7xl w-full mx-auto rounded-3xl shadow-2xl bg-base-200/80 border border-base-300 p-10 md:p-16">
         <div className="flex flex-col items-center gap-4 mb-10">
           <MdSupportAgent className="text-primary text-6xl mb-2" />

@@ -31,10 +31,10 @@ const Section2 = () => {
               triggerOnce // Only animate once
               fraction={0.5} // Start animation when element is 50% visible
             >
-            <>
-                            All About{" "}<span className="font-bold text-green-600">Plateful</span>
-            </>
-
+              <>
+                All About{" "}
+                <span className="font-bold text-green-600">Plateful</span>
+              </>
             </Fade>
           </h2>
           <p className="text-accent leading-relaxed mb-6 text-xl">
