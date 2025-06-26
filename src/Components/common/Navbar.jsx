@@ -20,13 +20,12 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full bg-base-300 shadow-sm">
+    <div className="w-full fixed z-50  bg-base-300/60 shadow-lg backdrop-blur-xl backdrop-saturate-150">
       <div className="w-10/12 mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
         {/* Logo */}
         <Link
           to="/"
-          className="text-3xl font-bold text-green-400 flex justify-center items-center
-    "
+          className="text-3xl font-bold text-green-400 flex justify-center items-center"
         >
           <PlateFulNamePlate></PlateFulNamePlate>
         </Link>
@@ -54,6 +53,26 @@ const Navbar = () => {
             }
           >
             All Recipe
+          </NavLink>
+                    <NavLink
+            to="/aboutUs"
+            className={({ isActive }) =>
+              `text-base font-medium hover:underline hover:text-info transition duration-200 ${
+                isActive ? "text-info" : "text-primary"
+              }`
+            }
+          >
+            About us
+          </NavLink>
+                    <NavLink
+            to="/support"
+            className={({ isActive }) =>
+              `text-base font-medium hover:underline hover:text-info transition duration-200 ${
+                isActive ? "text-info" : "text-primary"
+              }`
+            }
+          >
+            Support
           </NavLink>
 
           {user && (

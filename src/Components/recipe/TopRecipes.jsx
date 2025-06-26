@@ -9,7 +9,7 @@ const TopRecipes = () => {
 
 
   useEffect(() => {
-    fetch("https://assignment10-server-seven-delta.vercel.app/topRecipe")
+    fetch("https://assignment10-server-seven-delta.vercel.app/topRecipe?cnt=6")
       .then((res) => res.json())
       .then((data) => setTopRecipes(data))
       .catch((err) => console.error("Error fetching top recipes:", err));

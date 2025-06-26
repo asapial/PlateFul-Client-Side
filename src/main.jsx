@@ -24,6 +24,7 @@ import HomeLayout from "./Layout/HomeLayout.jsx";
 import DashboardLayout from "./Layout/DashboardLayout.jsx";
 import AboutUs from "./Pages/Others/AboutUs.jsx";
 import Support from "./Pages/Others/Support.jsx";
+import BlogDetails from "./Pages/Recipes/BlogDetails.jsx";
 export const AuthContext = createContext(null);
 
 const router = createBrowserRouter([
@@ -78,6 +79,10 @@ const router = createBrowserRouter([
       {
         path: "support",
         Component: Support,
+      },
+      {
+        path: "blog/:id",
+        Component: BlogDetails,
       },
     ],
   },

@@ -5,7 +5,7 @@ import PlateFulNamePlate from "../../Atoms/PlateFulNamePlate";
 
 const AboutUs = () => {
   return (
-    <div className="min-h-[80vh] flex flex-col items-center justify-center bg-base-100 px-4 py-12">
+    <div className="max-w-7xl min-h-[80vh] flex flex-col items-center justify-center bg-base-100 px-4 py-12">
       <div className="max-w-5xl w-full mx-auto rounded-3xl shadow-2xl bg-base-200/80 border border-base-300 p-10 md:p-16">
         <div className="flex flex-col md:flex-row items-center gap-8">
           <div className="flex-1 flex flex-col items-center md:items-start">
