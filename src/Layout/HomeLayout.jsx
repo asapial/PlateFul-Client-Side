@@ -7,7 +7,7 @@ import { ToastContainer } from 'react-toastify';
 const HomeLayout = () => {
     return (
         <div>
-            <div className="navBarContainer flex justify-center shadow-sm">
+            <div className="navBarContainer flex justify-center shadow-sm mb-18">
                 <Navbar></Navbar>
             </div>
             <Outlet></Outlet>

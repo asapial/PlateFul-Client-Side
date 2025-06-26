@@ -15,7 +15,7 @@ const Section2 = () => {
   }, []);
 
   return (
-    <section className="bg-base-300 py-16 w-10/12 mx-auto">
+    <section className="bg-base-300 py-16 w-full max-w-7xl mx-auto">
       <div className="justify-around mx-auto flex flex-col md:flex-row items-center gap-10">
         {/* Image */}
         <div className="md:w-1/2" data-aos="fade-right">

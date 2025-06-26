@@ -73,7 +73,7 @@ const BlogSection = () => {
   };
 
   return (
-    <section className="w-full bg-base-100 py-20 px-4 flex flex-col items-center">
+    <section className="w-full py-20 px-4 flex flex-col items-center">
       <h2 className="text-4xl md:text-5xl font-extrabold text-primary mb-12 flex items-center gap-3" data-aos="fade-down">
         <FaBookOpen className="text-accent" />
         Latest Blogs
