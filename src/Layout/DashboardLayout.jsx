@@ -18,14 +18,14 @@ const DashboardLayout = () => {
           onClick={() => setOpen(!open)}
           className=" top-7  left-5 hidden md:block z-50 fixed"
         >
-          <FaX></FaX>
+          <FaX size={20}></FaX>
         </button>
       ) : (
         <button
           onClick={() => setOpen(!open)}
           className="  top-7  left-5 hidden md:block  z-50 fixed"
         >
-          <RiMenuFold4Fill />
+          <RiMenuFold4Fill size={20} />
         </button>
       )}
 
