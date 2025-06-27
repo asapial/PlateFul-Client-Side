@@ -215,7 +215,7 @@ const handleUpdateSubmit = async (e) => {
                 ✨ Update Recipe
               </h2>
               <form
-                className="w-full grid grid-cols-2 gap-5  "
+                className="w-full flex flex-col lg:grid  lg:grid-cols-2 gap-5 "
                 onSubmit={handleUpdateSubmit}
               >
                 {/* Image URL */}

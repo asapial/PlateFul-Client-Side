@@ -9,6 +9,7 @@ import { RiMenuFold4Fill } from "react-icons/ri";
 
 const DashboardLayout = () => {
   const [open, setOpen] = useState(true);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <div className="max-h-screen flex flex-col relative">
@@ -28,9 +29,18 @@ const DashboardLayout = () => {
         </button>
       )}
 
-            <div className="navBarContainer flex justify-center shadow-sm mb-18">
-                <Navbar></Navbar>
-            </div>
+      {!mobileOpen && (
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className=" top-40  left-5 md:hidden   z-50 fixed "
+        >
+          <RiMenuFold4Fill size={30} />
+        </button>
+      )}
+
+      <div className="navBarContainer flex justify-center shadow-sm mb-50  lg:mb-18">
+        <Navbar></Navbar>
+      </div>
       <div className="flex flex-1">
         {/* Sidebar */}
         {open && (
@@ -38,10 +48,13 @@ const DashboardLayout = () => {
             <div className=" h-full ">
               <DashBoardLink />
             </div>
-            <DashBoardLinkDrawer></DashBoardLinkDrawer>
           </aside>
         )}
 
+        <DashBoardLinkDrawer
+          mobileOpen={mobileOpen}
+          setMobileOpen={setMobileOpen}
+        ></DashBoardLinkDrawer>
         {/* Main Content */}
         <main className="w-full flex flex-col h-screen">
           <div className="flex-1 overflow-y-auto ">

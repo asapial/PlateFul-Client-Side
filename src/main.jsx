@@ -93,12 +93,11 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        Component:DashBoardOverview,
-        // element: (
-        //   <PrivateRoute>
-        //     <MyRecipes></MyRecipes>
-        //   </PrivateRoute>
-        // ),
+        element: (
+          <PrivateRoute>
+            <DashBoardOverview></DashBoardOverview>
+          </PrivateRoute>
+        ),
       },
       {
         path: "myRecipe",

@@ -15,7 +15,6 @@ const MyProfile = () => {
     const photo = e.target.photo.value;
     updateUser(name, photo)
       .then(() => {
-        navigate("/");
         SuccessToast("🧑‍💻 Profile updated successfully!");
       })
       .catch(() => {

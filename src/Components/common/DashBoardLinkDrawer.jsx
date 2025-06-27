@@ -1,52 +1,30 @@
-import React from 'react';
-import DashBoardLink from './DashBoardLink';
-import { IoMdClose } from 'react-icons/io'; // React Icons close icon
+import React from "react";
+import DashBoardLink from "./DashBoardLink";
+import { IoMdClose } from "react-icons/io";
 
-const drawerStyle = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '80vw',
-  maxWidth: 320,
-  height: '100vh',
-  background: '#fff',
-  boxShadow: '2px 0 8px rgba(0,0,0,0.15)',
-  zIndex: 2000,
-  transition: 'transform 0.3s ease',
-  display: 'flex',
-  flexDirection: 'column',
-  padding: '1rem',
-};
-
-const closeBtnStyle = {
-  alignSelf: 'flex-end',
-  background: 'none',
-  border: 'none',
-  fontSize: 28,
-  cursor: 'pointer',
-  marginBottom: '1rem',
-};
-
-const overlayStyle = {
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  width: '100vw',
-  height: '100vh',
-  background: 'rgba(0,0,0,0.3)',
-  zIndex: 1999,
-};
-
-const DashBoardLinkDrawer = ({ open, onClose }) => {
-  // if (!open) return null;
+const DashBoardLinkDrawer = ({ mobileOpen, setMobileOpen }) => {
+  if (!mobileOpen) return null;
 
   return (
     <>
-      <div style={overlayStyle} onClick={onClose} />
-      <div style={drawerStyle}>
-        <button style={closeBtnStyle} onClick={onClose} aria-label="Close drawer">
+      {/* Overlay */}
+      <div
+        className="fixed inset-0  bg-opacity-30 z-[1999]"
+        onClick={() => setMobileOpen(false)}
+      />
+
+      {/* Drawer */}
+      <div className="fixed top-0 left-0 h-screen w-[80vw] max-w-xs bg-base-200 shadow-lg z-[2000] flex flex-col p-4 transform transition-transform duration-300">
+        {/* Close Button */}
+        <button
+          onClick={() => setMobileOpen(false)}
+          className="self-end text-gray-500 hover:text-red-500 text-2xl focus:outline-none mb-4"
+          aria-label="Close drawer"
+        >
           <IoMdClose />
         </button>
+
+        {/* Sidebar Links */}
         <DashBoardLink />
       </div>
     </>

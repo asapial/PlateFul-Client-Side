@@ -56,7 +56,7 @@ const AllRecipes = () => {
   }, [selectedCuisine, searchTerm]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-15 md:py-8">
       <title>AllRecipes | PlateFul</title>
       <h2 className="text-4xl font-extrabold text-center mb-10 text-primary tracking-tight">
         <span className="inline-flex items-center gap-2">

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect } from "react";
-import { Link, NavLink, useNavigate } from "react-router";
+import React, { useContext } from "react";
+import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../main";
 import { RxAvatar } from "react-icons/rx";
 import { FiLogOut } from "react-icons/fi";
@@ -9,15 +9,15 @@ import { FaSun, FaUtensils } from "react-icons/fa";
 import PlateFulNamePlate from "../../Atoms/PlateFulNamePlate";
 
 const Navbar = () => {
-  const { signOutUser, user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleSignOut = () => {
-    signOutUser().then(() => {
-      navigate("/");
-    });
-  };
+  // const handleSignOut = () => {
+  //   signOutUser().then(() => {
+  //     navigate("/");
+  //   });
+  // };
 
   return (
   
@@ -30,7 +30,6 @@ const Navbar = () => {
         >
           <PlateFulNamePlate></PlateFulNamePlate>
         </Link>
-        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
 
         {/* Nav Links */}
         <div className="flex flex-wrap justify-center gap-5 items-center">
@@ -121,7 +120,7 @@ const Navbar = () => {
             )}
           </button>
 
-          {user && (
+          {/* {user && (
             <button
               onClick={handleSignOut}
               className="px-5 py-2 bg-info text-info-content font-semibold rounded-xl shadow-md hover:bg-info/80 hover:shadow-lg transition duration-300 flex items-center gap-2"
@@ -129,7 +128,7 @@ const Navbar = () => {
               <FiLogOut className="text-lg" />
               Sign Out
             </button>
-          )}
+          )} */}
 
           {/* Avatar + Name */}
           <div className="flex items-center gap-2">
